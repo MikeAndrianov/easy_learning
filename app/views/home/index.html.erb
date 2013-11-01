@@ -4,6 +4,3 @@
 <% @users.each do |user| %>
   <h6> <%= user.email %> </h6>
 <% end %>
-
-
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
