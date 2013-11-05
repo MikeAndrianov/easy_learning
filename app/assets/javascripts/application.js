@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require_directory ./bootstrap
+//= require_directory ./andia
+//= require_directory ./prettyPhoto

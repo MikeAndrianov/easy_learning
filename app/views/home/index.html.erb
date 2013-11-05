@@ -1,6 +1,10 @@
-<h1> Home page </h1>
-<%= current_user ? current_user.email : "no current_user" %>
+<div class="container">
+  <h1> Home page </h1>
+  <%= current_user ? current_user.email : "no current_user" %>
 
-<% @users.each do |user| %>
-  <h6> <%= user.email %> </h6>
-<% end %>
+  <h3> All users: </h3>
+  <% @users.each do |user| %>
+    <h6> <%= user.email %> </h6>
+  <% end %>
+
+</div>

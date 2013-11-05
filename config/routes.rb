@@ -2,7 +2,17 @@ EasyLearning::Application.routes.draw do
   get "home/index"
   devise_for :users
 
-  root to: "home#index"
+  root "home#index"
+
+  resources :home do
+    collection do
+      get 'contact'
+      get 'about'
+      get 'services'
+      get 'portfolio'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

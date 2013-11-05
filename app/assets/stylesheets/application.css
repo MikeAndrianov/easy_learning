@@ -9,5 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require_directory ./bootstrap
+ *= require_directory ./prettyPhoto
+ *= require_directory ./andia
  *= require_tree .
  */

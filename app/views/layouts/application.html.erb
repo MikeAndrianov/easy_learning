@@ -1,25 +1,41 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title>EasyLearning</title>
+
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+
   </head>
 
   <body>
-    <div id="user_nav">
-      <% if current_user %>
-        <span> Hello! You signed in as <%= current_user.email %> </span>
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-      <% end %>
+    <%= render :partial => "layouts/header" %>
+
+
+    <%#==========================================DELETE THIS IMMEDIATELY========================================== %>
+    <% if "qwe" == nil %>
+      <div id="user_nav">
+        <% if current_user %>
+          <span> 
+            Hello! You signed in as <span style="font-weight: bold;"> <%= current_user.email %> </span>
+          </span>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+        <% end %>
+      </div>
+    <% end %>
+    <%#/=========================================DELETE THIS IMMEDIATELY========================================== %>
+    
+    <div class="wrapper">
+      <%= yield %>
     </div>
 
-    <%= yield %>
-
-    <%#= render :partial => "layouts/footer" %>
+    <%= render :partial => "layouts/footer" %>
 
   </body>
 </html>
