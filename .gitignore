@@ -17,7 +17,7 @@ doc
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/*
 /coverage
 config/aws.yml
 config/database.yml
