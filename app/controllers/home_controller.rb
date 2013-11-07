@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_filter :set_the_header
-
+  
   def index
     @users = User.all
   end
@@ -13,6 +13,13 @@ class HomeController < ApplicationController
 
   def set_the_header
     @the_header = :home
+    @tabs = [
+      { :name => "Home", :icon => "icon-home", :path => home_index_path },
+      { :name => "Portfolio", :icon => "icon-camera", :path => portfolio_home_index_path },
+      { :name => "Services", :icon => "icon-tasks", :path => services_home_index_path },
+      { :name => "About", :icon => "icon-user", :path => about_home_index_path },
+      { :name => "Contact", :icon => "icon-envelope-alt", :path => contact_home_index_path }
+    ]
   end
 
 
