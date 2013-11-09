@@ -7,8 +7,9 @@ module ApplicationHelper
 
   def nav_tabs(tabs=[])
     html = []
-    tabs.each do |tab| 
-      html << (content_tag :li, :class => ("current-page" if request.fullpath == tab[:path]) do
+    tabs.each do |tab|
+      tab_class = request.fullpath == tab[:path] ? "current-page #{tab[:class]}" : tab[:class]
+      html << (content_tag :li, :class => tab_class, :id => tab[:id] do
         link_to tab[:path] do
           content_tag(:i, '', :class => tab[:icon]) +
           tag(:br) +
@@ -18,6 +19,16 @@ module ApplicationHelper
     end
     
     html.join.html_safe
+  end
+
+  def clear(subclass=nil, options = {})
+    subclass = ' ' + subclass unless subclass.blank?
+    styles = []
+    styles << "height:#{options[:height]}px" unless options[:height].blank?
+
+    options[:styles].each{|prop, val| styles << "#{prop}:#{val}"} if options[:styles]
+    styles_str = styles.empty? ? '' : " style=\"#{styles.join('; ')}\""
+    "<div class=\"clear#{subclass}\"#{styles_str}></div>".html_safe
   end
 
 end

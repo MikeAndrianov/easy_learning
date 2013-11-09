@@ -12,12 +12,14 @@
             <a class="brand" href="index.html">Andia - a super cool design agency...</a>
           </h1>
           <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <%= nav_tabs(@tabs) %> 
+            <ul class="nav pull-right"> 
+              <%= nav_tabs(@tabs) %>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <%= render :partial => "layouts/headers/sign_in_form" %>
 </div>

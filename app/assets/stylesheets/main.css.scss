@@ -1,0 +1,69 @@
+/*  ----------------------------------------------
+ *
+ * MAIN
+ *
+ ------------------------------------------------- */
+
+/* -------------------------------------------------
+ *
+ * General
+ *
+ * Items that REWRITE STANDART template properties 
+ *                   or 
+ * add NEW STYLES should be placed here
+ *
+ * -------------------------------------------------
+*/
+
+$dark_grey: #5d5d5d;
+$light_grey: #888;
+$violet_plum: #9d426b;
+
+.clear {
+  clear: both;
+}
+
+.left{
+  float:left !important;
+}
+
+.right{
+  float: right !important;
+}
+
+.hidden{
+  display: none;
+}
+
+.container{
+  position: relative;
+}
+
+.login-form{
+  z-index: 1;
+  padding: 0 20px;
+  top: 50px;
+  position: absolute;
+  right: 0px;
+
+
+  form{
+    background: $violet_plum;
+    padding: 5px 20px 20px;
+
+    button{
+      color: $dark_grey;
+      background: white;
+    }
+
+    a{
+      color: white;
+    }
+  }
+
+  label{
+    color: white;
+  }
+
+
+}
