@@ -30,10 +30,15 @@ group :doc do
 end
 
 gem 'devise'
-gem 'mysql2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+group :development, :test do
+  gem 'thin'
+  gem 'mysql2'
+end
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
