@@ -65,5 +65,86 @@ $violet_plum: #9d426b;
     color: white;
   }
 
+}
 
+form button, form input[type="submit"]{
+    width: 120px;
+    height: 30px;
+    margin-top: 15px;
+    background: #9d426b;
+    border: 0;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #fff;
+    -moz-box-shadow:
+        0 1px 25px 0 rgba(0,0,0,.05) inset,
+        0 -1px 25px 0 rgba(0,0,0,.05) inset;
+    -webkit-box-shadow:
+        0 1px 25px 0 rgba(0,0,0,.05) inset,
+        0 -1px 25px 0 rgba(0,0,0,.05) inset;
+    box-shadow:
+        0 1px 25px 0 rgba(0,0,0,.05) inset,
+        0 -1px 25px 0 rgba(0,0,0,.05) inset;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+}
+
+.contact-us h1, .contact-us h2{
+  padding: 0 20px;
+  font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+  color: $dark_grey;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(255,255,255,.7);
+}
+
+
+
+.flexslider .flex-control-thumbs ol{
+  height: 95px;
+}
+
+.flexslider .flex-control-thumbs li{
+  overflow: hidden;
+  height: 95px;
+  position: relative;
+}
+
+.flexslider .flex-control-thumbs img{
+  max-width: none;
+  width: auto;
+  height: 100%;
+  position: absolute;
+}
+
+/*=============== FLEXSLIDER WIDE IMAGES FIX =================*/
+/*.flexslider .slides img {
+  position: relative;
+  max-width: none;
+  height: 100%;
+  width: auto;
+}
+
+.flexslider .flex-viewport{
+  max-height: 480px;
+  overflow: hidden;
+}
+
+.flexslider .flex-viewport ul{
+  position: relative;
+}
+
+.flexslider .slides > li{
+  height: 100%;
+}
+*/
+/*============================================================*/
+
+.span6 .flex-caption{
+  max-width: 470px;
+}
+
+.span8.slider{
+  margin-top: 25px;
 }

@@ -34,6 +34,8 @@ gem 'devise'
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'sprockets'
+
 group :development, :test do
   gem 'thin'
   gem 'mysql2'

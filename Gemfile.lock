@@ -133,6 +133,7 @@ DEPENDENCIES
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc
+  sprockets
   thin
   turbolinks
   uglifier (>= 1.3.0)
