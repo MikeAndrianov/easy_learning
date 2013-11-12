@@ -31,4 +31,20 @@ module ApplicationHelper
     "<div class=\"clear#{subclass}\"#{styles_str}></div>".html_safe
   end
 
+  #
+  #methods finds **substring** in given string and replace asterisks width <strong> tag 
+  def make_bolder_text_part(text)
+    text.gsub(/\*\*[\w\s]+\*\*/) do |bold_text_part| 
+      content_tag(:strong, bold_text_part.delete("**"))
+    end
+  end
+
+  def write_flash(*attrs)
+    res = (attrs.blank? ? [ :fail, :warn, :success] : attrs).collect do |item|
+        text = make_bolder_text_part flash[item].to_s.split("\n").collect { |text| h text }.join("<br />\n") if flash[item]
+        %[<div class="alert alert-#{item}">#{text}</div>] if text
+    end.compact.join + flash[:notice].to_s
+    res.html_safe
+  end
+
 end
