@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
       if current_user
         [
           { :name => "Home", :icon => "icon-home", :path => home_index_path },
+          { :name => "Settings", :icon => "icon-cog", :path => settings_path },
           { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
       else
