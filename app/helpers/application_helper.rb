@@ -10,7 +10,7 @@ module ApplicationHelper
     tabs.each do |tab|
       tab_class = request.fullpath == tab[:path] ? "current-page #{tab[:class]}" : tab[:class]
       html << (content_tag :li, :class => tab_class, :id => tab[:id] do
-        link_to tab[:path] do
+        link_to tab[:path], :method => tab[:method] do
           content_tag(:i, '', :class => tab[:icon]) +
           tag(:br) +
           "#{tab[:name]}"
@@ -40,7 +40,7 @@ module ApplicationHelper
   end
 
   def write_flash(*attrs)
-    res = (attrs.blank? ? [ :fail, :warn, :success] : attrs).collect do |item|
+    res = (attrs.blank? ? [ :fail, :warn, :success, :notice] : attrs).collect do |item|
         text = make_bolder_text_part flash[item].to_s.split("\n").collect { |text| h text }.join("<br />\n") if flash[item]
         %[<div class="alert alert-#{item}">#{text}</div>] if text
     end.compact.join + flash[:notice].to_s
