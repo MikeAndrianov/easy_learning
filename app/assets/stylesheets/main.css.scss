@@ -39,6 +39,20 @@ $violet_plum: #9d426b;
   position: relative;
 }
 
+.active-element {
+    background: $violet_plum;
+    color: white;
+}
+
+#sign-in.active-element a, #sign-in.active-element i{
+  color: #fff;
+
+  -o-transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+  -ms-transition: none;
+}
+
 .login-form{
   z-index: 1;
   padding: 0 20px;
