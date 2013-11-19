@@ -1,6 +1,8 @@
 EasyLearning::Application.routes.draw do
-  get "home/index"
   devise_for :users, controllers: {sessions: "sessions"}
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  get "home/index"
+ 
 
   root "home#index"
 

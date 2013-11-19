@@ -17,23 +17,23 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navigation_tabs
-    @tabs = 
-      if current_user
-        [
-          { :name => "Home", :icon => "icon-home", :path => home_index_path },
-          { :name => "Settings", :icon => "icon-cog", :path => settings_path },
-          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
-        ]
-      else
-        [
-          { :name => "Home", :icon => "icon-home", :path => home_index_path },
-          { :name => "Portfolio", :icon => "icon-camera", :path => portfolio_home_index_path },
-          { :name => "Services", :icon => "icon-tasks", :path => services_home_index_path },
-          { :name => "About", :icon => "icon-font", :path => about_home_index_path },
-          { :name => "Contact", :icon => "icon-envelope-alt", :path => contact_home_index_path },
-          { :name => "Sign in", :icon => "icon-user", :path => '#', :id => "sign-in" }
-        ]
-      end
+    @tabs = []
+  #     if current_user
+  #       [
+  #         { :name => "Home", :icon => "icon-home", :path => home_index_path },
+  #         { :name => "Settings", :icon => "icon-cog", :path => settings_path },
+  #         { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+  #       ]
+  #     else
+  #       [
+  #         { :name => "Home", :icon => "icon-home", :path => home_index_path },
+  #         { :name => "Portfolio", :icon => "icon-camera", :path => portfolio_home_index_path },
+  #         { :name => "Services", :icon => "icon-tasks", :path => services_home_index_path },
+  #         { :name => "About", :icon => "icon-font", :path => about_home_index_path },
+  #         { :name => "Contact", :icon => "icon-envelope-alt", :path => contact_home_index_path },
+  #         { :name => "Sign in", :icon => "icon-user", :path => '#', :id => "sign-in" }
+  #       ]
+  #     end
   end
 
 end
