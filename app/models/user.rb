@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :email, presence: true 
+
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
-  ROLES = %w[Administrator Lecturer Student]
+  ROLES = ["Administrator", "Lecturer", "Student"]
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
@@ -21,11 +23,24 @@ class User < ActiveRecord::Base
     roles.include? role.to_s
   end
 
+  def admin?
+    role == "Administrator"
+  end
+
+  def lecturer?
+    role == "Lecturer"
+  end
+
+  def student? 
+    role == "Student"
+  end
+
   #
   #As for now we have one Role per User. It's not quite good to do. 
   #This HOTFIX must be refactoried!
-  def role
-    roles.last
-  end
+  
+  #def role
+  #  roles.last
+  #end
 
 end

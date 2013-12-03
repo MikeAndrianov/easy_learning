@@ -5,6 +5,7 @@
   <body>
     <%= render_appropriate_header %>
     <div id="flash_messages" class="container"><%= write_flash %></div>
+    <!--  <div class="alert alert-info"><%= alert %></div> -->
     <%= yield %>
 
     <%= render :partial => "layouts/footer" %>
