@@ -1,6 +1,6 @@
 EasyLearning::Application.routes.draw do
   get "home/index"
-  devise_for :users, controllers: {sessions: "sessions"}
+  devise_for :users, controllers: {sessions: "sessions", registrations: "registrations"}
 
   root "home#index"
 
@@ -14,6 +14,12 @@ EasyLearning::Application.routes.draw do
   end
 
   resource :settings
+ 
+  namespace :user do
+    resources :home
+    resource :settings
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

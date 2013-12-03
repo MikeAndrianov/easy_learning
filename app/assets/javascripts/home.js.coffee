@@ -1,5 +1,4 @@
 $(document).ready ->
-  qw = "hisd" 
   $("#sign-in").hover ->
     $(".login-form").toggleClass 'hidden'
   $(".login-form").hover ->
