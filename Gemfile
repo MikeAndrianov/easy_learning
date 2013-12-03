@@ -37,6 +37,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'sprockets'
 
+gem 'rails_admin'
+
 group :development, :test do
   gem 'thin'
   gem 'mysql2'
