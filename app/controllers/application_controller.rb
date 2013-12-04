@@ -18,10 +18,20 @@ class ApplicationController < ActionController::Base
 
   def set_navigation_tabs
     @tabs = 
-      if current_user
+      if current_user && current_user.admin?
         [
-          { :name => "Home", :icon => "icon-home", :path => home_index_path },
-          { :name => "Settings", :icon => "icon-cog", :path => settings_path },
+          { :name => "Users", :icon => "icon-user", :path => user_settings_path },
+          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
+          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+        ]
+      elsif current_user && current_user.lecturer?
+        [
+          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
+          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+        ]
+      elsif current_user && current_user.student?
+        [
+          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
           { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
       else
