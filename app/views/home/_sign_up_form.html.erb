@@ -13,11 +13,6 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
 
-      <%#= f.label :role %>
-      <%#= f.select :role, options_for_select(User::ROLES) %>
-      <%= hidden_field_tag "user[role]", "Student" %>
-
-
       <%= f.submit "Sign up" %>
     <% end %>
 </div>
