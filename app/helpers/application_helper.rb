@@ -6,6 +6,7 @@ module ApplicationHelper
   end
 
   def nav_tabs(tabs=[])
+    return unless tabs
     html = []
     tabs.each do |tab|
       tab_class = request.fullpath == tab[:path] ? "current-page #{tab[:class]}" : tab[:class]

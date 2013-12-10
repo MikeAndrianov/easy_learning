@@ -17,10 +17,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navigation_tabs
+    # We don't need this navigation tabs for admin site
+    #
+    return if params[:controller] == ("rails_admin/main" || "rails_admin/application")
+
     @tabs = 
       if current_user && current_user.admin?
         [
-          { :name => "Users", :icon => "icon-user", :path => user_settings_path },
+          { :name => "Administration", :icon => "icon-list-alt", :path => rails_admin.dashboard_path },
           { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
           { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
