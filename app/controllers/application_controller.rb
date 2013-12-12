@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_navigation_tabs
   layout :set_layout
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:fail] = "Access denied!"
+    redirect_to '/'
+  end
+
   protected
 
   def set_app_name
