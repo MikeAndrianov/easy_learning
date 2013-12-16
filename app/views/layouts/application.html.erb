@@ -3,11 +3,18 @@
   <%= render :partial => "layouts/head" %>
 
   <body>
-    <%= render_appropriate_header %>
-    <div id="flash_messages" class="container"><%= write_flash %></div>
-    <!--  <div class="alert alert-info"><%= alert %></div> -->
-    <%= yield %>
+    <div id="content">
+      <%= render_appropriate_header %>
 
+      <div id="flash_messages" class="container"> 
+        <%= write_flash %> 
+      </div>
+      
+      <%= yield %>
+      
+      <div id="footer-filler"> </div>
+    </div>
+    
     <%= render :partial => "layouts/footer" %>
 
   </body>

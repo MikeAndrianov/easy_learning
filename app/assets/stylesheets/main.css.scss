@@ -19,6 +19,23 @@ $dark_grey: #5d5d5d;
 $light_grey: #888;
 $violet_plum: #9d426b;
 
+
+html, body{
+  height: 100%;
+} 
+
+#content{
+  min-height: 100%;
+}
+
+#footer-filler{
+  height: 310px;
+}
+
+footer{
+  margin-top: -320px;
+}
+
 .clear {
   clear: both;
 }
