@@ -3,9 +3,10 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :user_params, :only => [:update, :create]
 
   def create
-    build_resource(sign_up_params)
-    puts "sign up params: " 
-    puts sign_up_params
+    # only Students can register from home page
+    #
+    build_resource(sign_up_params.merge(:role => "Student"))
+
     if resource.save
       yield resource if block_given?
       if resource.active_for_authentication?
@@ -31,7 +32,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def user_params
-    devise_parameter_sanitizer.for(:sign_up) << :role
+    devise_parameter_sanitizer.for(:sign_up)
   end
 
 
