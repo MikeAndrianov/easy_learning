@@ -29,28 +29,30 @@ class ApplicationController < ActionController::Base
     @tabs = 
       if current_user && current_user.admin?
         [
-          { :name => "Administration", :icon => "icon-list-alt", :path => rails_admin.dashboard_path },
-          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+          { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
+          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
       elsif current_user && current_user.lecturer?
         [
-          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+          { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
+          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
       elsif current_user && current_user.student?
         [
-          { :name => "Settings", :icon => "icon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "icon-share-alt", :path => destroy_user_session_path, :method => :delete }
+          { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
+          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
         ]
       else
         [
-          { :name => "Home", :icon => "icon-home", :path => home_index_path },
-          { :name => "Portfolio", :icon => "icon-camera", :path => portfolio_home_index_path },
-          { :name => "Services", :icon => "icon-tasks", :path => services_home_index_path },
-          { :name => "About", :icon => "icon-font", :path => about_home_index_path },
-          { :name => "Contact", :icon => "icon-envelope-alt", :path => contact_home_index_path },
-          { :name => "Sign in", :icon => "icon-user", :path => '#', :id => "sign-in" }
+          { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },
+          { :name => "Portfolio", :icon => "glyphicon glyphicon-picture", :path => portfolio_home_index_path },
+          { :name => "Services", :icon => "glyphicon glyphicon-briefcase", :path => services_home_index_path },
+          { :name => "About", :icon => "glyphicon glyphicon-font", :path => about_home_index_path },
+          { :name => "Contact", :icon => "glyphicon glyphicon-envelope", :path => contact_home_index_path },
+          { :name => "Sign in", :icon => "glyphicon glyphicon-user", :path => '#', :id => "sign-in" }
         ]
       end
   end
