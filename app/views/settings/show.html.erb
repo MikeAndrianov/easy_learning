@@ -1,3 +1,27 @@
 <h1> Settings </h1>
 
-<h2> Your role: <span style="color:#9d426b"><%= current_user.role %></span></h2> 
+
+<h2> Your role: <span style="color:#9d426b"> <%= current_user.role %></span></h2>
+<div class="contact-us container">
+	<div class="contact-form span7">
+		<div class="contact-form span7">
+			<%= form_for @user, :url => url_for(:controller => 'settings', :action => 'create') do |f| %>
+				<% if @user.errors.any? %>
+					<h2> <%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+					<ul>
+						<% @user.errors.full_messages.each do |msg| %>
+							<li> <%= msg %> </li>
+						<% end %>
+					</ul>
+				<% end %>
+		 		<%= f.label :name, 'Name',:class => 'nameLabel'  %>
+				<%= f.text_field :name %>
+				<%= f.label :email, 'Email' %>
+				<%= f.text_field :email %>
+				<%= f.label :mobile, 'Mobile' %>
+				<%= f.text_field :mobile %>	
+				<%= f.submit "Save", :class => 'green' %>
+			<% end %>
+		</div>
+	</div>
+</div>

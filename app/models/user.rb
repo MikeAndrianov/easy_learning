@@ -5,7 +5,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :email, presence: true 
+ 
+  validates :name, :email, :mobile, presence: true
+  #custom validation
+  #
+  #validate :my_custom_validation_for_phone
+  validates_format_of :email,
+    :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, :multiline => true, 
+      :message => "Email  must be in admin_name@admin_email format."
+  validates_format_of :mobile,
+    :with => /\+([\d]){3}-([\d]){2}-([\d]){7}$/i, :multiline => true ,
+      :message => "Mobile number must be in +375-xx-xxxxxxx format."
+
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
