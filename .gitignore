@@ -30,3 +30,4 @@ test
 *.swp
 .DS_Store
 REVISION
+.idea

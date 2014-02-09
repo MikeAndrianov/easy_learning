@@ -27,34 +27,37 @@ class ApplicationController < ActionController::Base
     return if params[:controller] == ("rails_admin/main" || "rails_admin/application")
 
     @tabs = 
-      if current_user && current_user.admin?
-        [
-          { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
-          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
-        ]
-      elsif current_user && current_user.lecturer?
-        [
-          { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
-          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
-        ]
-      elsif current_user && current_user.student?
-        [
-          { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
-          { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
-          { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
-        ]
-      else
-        [
-          { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },
-          { :name => "Portfolio", :icon => "glyphicon glyphicon-picture", :path => portfolio_home_index_path },
-          { :name => "Services", :icon => "glyphicon glyphicon-briefcase", :path => services_home_index_path },
-          { :name => "About", :icon => "glyphicon glyphicon-font", :path => about_home_index_path },
-          { :name => "Contact", :icon => "glyphicon glyphicon-envelope", :path => contact_home_index_path },
-          { :name => "Sign in", :icon => "glyphicon glyphicon-user", :path => '#', :id => "sign-in" }
-        ]
-      end
+    if current_user && current_user.admin?
+      [
+        { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
+      ]
+    elsif current_user && current_user.lecturer?
+      [
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },         
+        { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
+      ]
+    elsif current_user && current_user.student?
+      [
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_settings_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
+      ]
+    else
+      [
+        { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },          
+        { :name => "Portfolio", :icon => "glyphicon glyphicon-picture", :path => portfolio_home_index_path },
+        { :name => "Services", :icon => "glyphicon glyphicon-briefcase", :path => services_home_index_path },
+        { :name => "About", :icon => "glyphicon glyphicon-font", :path => about_home_index_path },
+        { :name => "Contact", :icon => "glyphicon glyphicon-envelope", :path => contact_home_index_path },
+        { :name => "Sign in", :icon => "glyphicon glyphicon-user", :path => '#', :id => "sign-in" }
+      ]
+    end
   end
 
 end

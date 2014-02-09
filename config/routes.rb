@@ -1,5 +1,6 @@
 EasyLearning::Application.routes.draw do
 
+  get "tests/index"
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
@@ -15,7 +16,9 @@ EasyLearning::Application.routes.draw do
       get 'portfolio'
     end
   end
-
+  
+  resources :tests
+  
   resource :settings
  
   namespace :user do
