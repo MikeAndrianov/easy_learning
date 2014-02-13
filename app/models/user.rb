@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   #
   #validate :my_custom_validation_for_phone
   validates_format_of :email,
-    :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, :multiline => true, 
+    :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z]{2,4}$/i, :multiline => true, 
       :message => "Email  must be in admin_name@admin_email format."
   validates_format_of :mobile,
     :with => /\+([\d]){3}-([\d]){2}-([\d]){7}$/i, :multiline => true ,
