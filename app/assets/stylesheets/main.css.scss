@@ -202,3 +202,15 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
     font-size: 35px;
   }
 }
+
+#errorExplanation{
+  background-color: #faf3e9;
+  border-left: 3px solid #f0ad4e;
+  padding: 5px 20px;
+  margin: 10px;
+ 
+  h2{
+    font-size: 20px;
+    color: #f0ad4e;
+  }
+}
