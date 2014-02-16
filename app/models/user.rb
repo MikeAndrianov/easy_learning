@@ -5,17 +5,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- 
-  validates :name, :email, :mobile, presence: true
-  #custom validation
+  # Devise checks presence of email field. We shouldn't do it here one more time. 
   #
-  #validate :my_custom_validation_for_phone
+  validates :name, presence: true
+
   validates_format_of :email,
     :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z]{2,4}$/i, :multiline => true, 
-      :message => "Email  must be in admin_name@admin_email format."
+      :message => "must be in example@email.com format."
+  
   validates_format_of :mobile,
-    :with => /\+([\d]){3}-([\d]){2}-([\d]){7}$/i, :multiline => true ,
-      :message => "Mobile number must be in +375-xx-xxxxxxx format."
+    :with => /\+([\d]){3}[-" "]*([\d]){2}[-" "]*([\d]){7}$/i, :multiline => true ,
+      :message => "number must be in +375-xx-xxxxxxx format."
 
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }

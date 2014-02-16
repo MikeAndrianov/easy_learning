@@ -44,6 +44,8 @@ group :development, :test do
   gem 'mysql2'
 end
 
+gem 'dynamic_form'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

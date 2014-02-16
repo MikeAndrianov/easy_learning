@@ -1,0 +1,15 @@
+<% description ||= "" %>
+<div class="page-title">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <i class="glyphicon glyphicon-cog"></i>
+        <h2> <%= title %> </h2>
+        <% unless description.blank? %> 
+          <h2> / </h2>
+          <p> <%= description %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
