@@ -15,17 +15,10 @@ EasyLearning::Application.routes.draw do
       get 'portfolio'
     end
   end
-
-  
-
  
   namespace :user do
     resources :home
-    resource :settings do
-      collection do
-        patch 'update_password'
-      end
-    end
+    resource :settings, :only => [:show, :update]
   end
 
 
