@@ -16,6 +16,8 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan
 
+  # config.excluded_models = ["Question","Answer"]
+
   config.model 'User' do
     list do
       exclude_fields :reset_password_sent_at,:remember_created_at,
@@ -36,6 +38,9 @@ RailsAdmin.config do |config|
                       :roles_mask
     end
   end
+
+  # config.model 'Test' do
+  # end
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
