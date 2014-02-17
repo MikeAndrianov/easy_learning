@@ -19,6 +19,7 @@ EasyLearning::Application.routes.draw do
   namespace :user do
     resources :home
     resource :settings, :only => [:show, :update]
+    resource :schedule, :only => [:show]
   end
 
 
