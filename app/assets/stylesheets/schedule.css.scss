@@ -1,0 +1,47 @@
+@import "colors";
+
+#calendar{
+  padding: 20px;
+  
+  h2{
+    background: $violet_plum;
+    color: white;
+    padding: 50px 50px 0;
+    text-align: left;
+    margin-bottom: 0;
+
+    a{
+      color: white;
+    }
+
+    a:hover{
+      color: #C87C9E;
+    }
+  }
+
+  table.calendar{
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid $violet_plum;
+
+    th{
+      background: $violet_plum;
+      font-size: 18px;
+      height: 100px;
+      color: white;
+    }
+
+    td{
+      border: 1px solid $violet_plum;
+      height: 100px;
+      vertical-align: top;
+    }
+
+    .day{
+      margin: 5px;
+      font-size: 16px;
+      text-align: left
+    }
+
+  }
+}
