@@ -1,0 +1,11 @@
+<div class="container">
+
+
+<ul>
+  <%= @events.each do |event| %>
+    <li> <%= event.name %> </li>
+  <% end %>
+</ul>
+  <%= clear nil, :height => 70 %>
+
+</div>

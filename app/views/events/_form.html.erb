@@ -1,0 +1,36 @@
+<%#= link_to new_event_path %>
+<div class="contact-us container">
+  <div class="contact-form span7">
+    <%= form_for @event, :html => {:class => 'row'} do |f| %>
+      <%= f.error_messages %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+
+      <div class="date_select">
+        <%= f.label :starts_at %>
+        <%= f.datetime_select :starts_at %>
+      </div>
+
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+
+      <%= f.label :user_ids, "Participants" %>
+      <%= f.collection_select :user_ids, User.all(:conditions => ["id != ?", current_user.id], :order => :name), 
+                                         :id, :name, {}, { :multiple => true } %>
+
+      <%= clear %>
+
+      <%= f.submit 'Save' %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  // $(document).ready(function(){
+  //   $('#event_user_ids').chosen()
+  // });
+</script>

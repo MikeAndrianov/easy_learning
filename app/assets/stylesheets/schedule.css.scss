@@ -2,6 +2,21 @@
 
 #calendar{
   padding: 20px;
+  position: relative;
+
+  .popup{
+    position: absolute;
+    top: 0;
+    left:0;
+    right:0;
+    bottom: 0;
+    margin:auto;
+    
+    border: 3px solid $violet_plum;
+    background: white;
+    height: 200px;
+    width: 500px;
+  }
   
   h2{
     background: $violet_plum;
@@ -15,7 +30,7 @@
     }
 
     a:hover{
-      color: #C87C9E;
+      color: $light_violet_plum;
     }
   }
 
@@ -39,8 +54,59 @@
 
     .day{
       margin: 5px;
-      font-size: 16px;
-      text-align: left
+
+      &.today{
+        background: $light_violet_plum;
+        color: white;
+
+        .day{
+          font-weight: bold;
+        }
+      }
+
+      &.notmonth{
+        background: $grey_almost_white;
+        opacity: 0.4;
+      }
+
+      .date{
+        font-size: 16px;
+        text-align: left;
+
+        .event{
+          font-size: 12px;
+          background: $violet_plum;
+          border: 1px solid $violet_plum;
+          color: white;
+          margin: 1px 0;
+          padding: 2px 5px;
+
+          .time{
+            float: left;
+            margin-right: 5px;
+          }
+
+          .name{
+            white-space: nowrap;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            -moz-text-overflow: ellipsis;
+            -webkit-text-overflow: ellipsis;
+          }
+        }
+
+        .event:hover{
+          color: $violet_plum;
+          background: white;
+
+          -o-transition: all .3s;
+          -moz-transition: all .3s;
+          -webkit-transition: all .3s;
+          -ms-transition: all .3s;
+        }
+      }
     }
 
   }

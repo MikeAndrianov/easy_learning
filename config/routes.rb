@@ -18,6 +18,7 @@ EasyLearning::Application.routes.draw do
   end
   
   resources :tests
+  resources :events
    
   namespace :user do
     resources :home

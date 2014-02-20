@@ -126,12 +126,18 @@ form button, form input[type="submit"]{
     -ms-transition: all .3s;
 }
 
-.contact-us h1, .contact-us h2{
-  padding: 0 20px;
-  font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
-  color: $dark_grey;
-  text-transform: uppercase;
-  text-shadow: 0 1px 0 rgba(255,255,255,.7);
+.contact-us{
+  h1, h2{
+    padding: 0 20px;
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    color: $dark_grey;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+
+  form textarea{
+    height: 80px;
+  }
 }
 
 
@@ -210,5 +216,12 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
   h2{
     font-size: 20px;
     color: #f0ad4e;
+  }
+}
+
+.date_select{
+  select{
+    min-width: 100px;
+    width: auto;
   }
 }

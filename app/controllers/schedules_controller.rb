@@ -3,6 +3,8 @@ class SchedulesController < ApplicationController
 
   def show
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @events = Event.all
+    @events_by_date = @events.group_by{ |event| event.starts_at.to_date }
   end
 
   private

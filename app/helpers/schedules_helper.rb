@@ -5,7 +5,7 @@ module SchedulesHelper
   end
 
   class Calendar < Struct.new(:view, :date, :callback)
-    HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
+    HEADER = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
     START_DAY = :monday
 
     delegate :content_tag, to: :view
@@ -31,8 +31,8 @@ module SchedulesHelper
     end
 
     def day_cell(day)
-      content_tag :td do 
-        content_tag :div, view.capture(day, &callback), class: day_classes(day)
+      content_tag :td, :class => day_classes(day) do 
+        content_tag :div, view.capture(day, &callback), :class => "date"
       end
     end
 

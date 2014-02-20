@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
     elsif current_user && current_user.student?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
+        { :name => "Event DELETE THIS!", :icon => "glyphicon glyphicon-calendar", :path => events_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }

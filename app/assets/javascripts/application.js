@@ -17,3 +17,4 @@
 //= require_directory ./bootstrap
 //= require_directory ./andia
 //= require_directory ./prettyPhoto
+//= require chosen-jquery
