@@ -1,7 +1,8 @@
 <div class="container">
 
   <div id="calendar">
-    <div class="popup"> Content here... </div>
+    <div class="popup span5"> Content here... </div>
+
     <h2 id="month">
       <%= link_to "", user_schedule_path(:date => @date.prev_month), {:style => "margin-right: 30px; font-size: 20px;", :class => "glyphicon glyphicon-chevron-left" }  %>
       <%= @date.strftime("%B %Y") %>   
@@ -15,7 +16,7 @@
 
       <% if @events_by_date[date] %>
         <% @events_by_date[date].each do |event| %>
-          <%= link_to edit_event_path(event) do %>
+          <%= link_to edit_event_path(event), :remote => true do %>
             <div class="event">
               <div class="time"> <%= event.starts_at.strftime("%H:%M") %> </div>
               <div class="name"> <%= event.name %> </div>

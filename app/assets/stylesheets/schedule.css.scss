@@ -5,6 +5,7 @@
   position: relative;
 
   .popup{
+    z-index: 1;
     position: absolute;
     top: 0;
     left:0;
@@ -12,10 +13,18 @@
     bottom: 0;
     margin:auto;
     
+    display: none;
     border: 3px solid $violet_plum;
     background: white;
-    height: 200px;
-    width: 500px;
+    height: 700px;
+    /*width: 500px;*/
+
+    .contact-us{
+      margin-top: 0;
+      padding-bottom: 0;
+
+      textarea{ max-width: 415px; }
+    }
   }
   
   h2{
@@ -25,13 +34,9 @@
     text-align: left;
     margin-bottom: 0;
 
-    a{
-      color: white;
-    }
+    a{ color: white; }
 
-    a:hover{
-      color: $light_violet_plum;
-    }
+    a:hover{ color: $light_violet_plum; }
   }
 
   table.calendar{
@@ -59,9 +64,7 @@
         background: $light_violet_plum;
         color: white;
 
-        .day{
-          font-weight: bold;
-        }
+        .day{ font-weight: bold; }
       }
 
       &.notmonth{
