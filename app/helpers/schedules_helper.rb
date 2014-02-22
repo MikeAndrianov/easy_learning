@@ -31,7 +31,7 @@ module SchedulesHelper
     end
 
     def day_cell(day)
-      content_tag :td, :class => day_classes(day) do 
+      content_tag :td, :class => day_classes(day), :day => day do 
         content_tag :div, view.capture(day, &callback), :class => "date"
       end
     end

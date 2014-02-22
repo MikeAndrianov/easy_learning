@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
-  before_filter :set_the_header, :set_user
+  before_filter :set_the_header
+  before_filter :set_user
+  before_filter :set_event, :only => [:show, :edit, :update, :destroy]
+
 
   #TODO: add destroy action! Also add dependent: :destroy Enent.rb has_many :participations, dependent: :destroy
   #
@@ -11,13 +14,13 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @event = Event.new
-    @participation = @event.participations.build
+    @event = Event.new(:starts_at => params[:day])
+    respond_to do |format|
+      format.js { render :action => 'edit'}
+    end
   end
 
   def edit
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       format.html
       format.js
@@ -27,39 +30,44 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
-      else
-        format.html { render action: 'new' }
-      end
+    if @event.save
+      flash[:success] = '**Event** was **successfully saved**.'
+    else
+      flash[:fail] = '**Failed** to **save event**.'
     end
+
+    redirect_to user_schedule_path
   end
 
-  # def update
-  #   respond_to do |format|
-  #     if @product.update(product_params)
-  #       format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: 'edit' }
-  #       format.json { render json: @product.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
   def update
+    if @event.update(event_params)
+      flash[:success] = '**Event** was **successfully saved**.'
+    else
+      flash[:fail] = '**Failed** to **save event**.'
+    end
 
+    redirect_to user_schedule_path
+  end
+
+  def destroy
+    @event.destroy
+
+    flash[:success] = '**Event** was **successfully destroyed**.'
+    redirect_to user_schedule_path
   end
   
   private
+  
+  def set_the_header
+    @the_header = :settings
+  end
 
   def set_user
     @user = current_user
   end
 
-  def set_the_header
-    @the_header = :settings
+  def set_event
+    @event = Event.find(params[:id])
   end
 
   def event_params

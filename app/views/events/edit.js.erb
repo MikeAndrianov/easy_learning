@@ -1,2 +1,7 @@
-$(".popup").fadeIn("fast");
-$('.popup').html('<%= escape_javascript(render :partial => "form") %>');
+$("table.calendar").addClass("compact-calendar left");
+
+setTimeout(function(){
+  var calendar_height = $(".calendar").height() - 4;
+  $('.popup').height(calendar_height).removeClass("hidden fadeOut").addClass("animated fadeIn").html('<%= escape_javascript(render :partial => "form") %>');
+}, 300);
+

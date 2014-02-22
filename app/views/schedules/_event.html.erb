@@ -1,0 +1,6 @@
+<%= link_to edit_event_path(event), :remote => true do %>
+  <div class="event">
+    <div class="time"> <%= event.starts_at.strftime("%H:%M") %> </div>
+    <div class="name"> <%= event.name %> </div>
+  </div>
+<% end %>

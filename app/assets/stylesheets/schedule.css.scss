@@ -4,29 +4,40 @@
   padding: 20px;
   position: relative;
 
+  #month{
+    .nav{
+      font-size: 20px;
+
+      &.prev{ margin-right: 30px; }
+      &.next{ margin-left: 30px; }
+    }
+  }
+
   .popup{
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left:0;
-    right:0;
-    bottom: 0;
-    margin:auto;
-    
-    display: none;
+    margin:auto;    
     border: 3px solid $violet_plum;
     background: white;
-    height: 700px;
-    /*width: 500px;*/
+    height: auto;
+    width: 379px;
 
     .contact-us{
       margin-top: 0;
       padding-bottom: 0;
 
-      textarea{ max-width: 415px; }
+      form{ margin-top: 0;}
+
+      textarea{ max-width: 325px; }
+    }
+
+    .date_select{
+      font-size: 13px;
+      
+      select{
+        font-size: 13px;
+        width: auto;
+      }
     }
   }
-  
   h2{
     background: $violet_plum;
     color: white;
@@ -40,11 +51,20 @@
   }
 
   table.calendar{
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+
+    &.compact-calendar{ width: 66%; }
+
     table-layout: fixed;
     width: 100%;
     border: 1px solid $violet_plum;
 
     th{
+      overflow: hidden;
+      text-overflow: ellipsis;
       background: $violet_plum;
       font-size: 18px;
       height: 100px;
@@ -53,23 +73,25 @@
 
     td{
       border: 1px solid $violet_plum;
-      height: 100px;
+      height: 110px;
       vertical-align: top;
     }
 
     .day{
       margin: 5px;
 
+      .date-day{ margin: 5px; }
+
       &.today{
         background: $light_violet_plum;
         color: white;
 
-        .day{ font-weight: bold; }
+        .date-day{ font-weight: bold; }
       }
 
       &.notmonth{
         background: $grey_almost_white;
-        opacity: 0.4;
+        opacity: 0.6;
       }
 
       .date{
@@ -92,11 +114,7 @@
           .name{
             white-space: nowrap;
             overflow: hidden;
-
             text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            -moz-text-overflow: ellipsis;
-            -webkit-text-overflow: ellipsis;
           }
         }
 

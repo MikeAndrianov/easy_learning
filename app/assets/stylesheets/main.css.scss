@@ -140,6 +140,32 @@ form button, form input[type="submit"]{
   }
 }
 
+.light-button{
+  font-style: italic;
+  padding: 4px 37px;
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 5px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  color: #5D5D5D;
+  border: 1px solid $violet_plum;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  -moz-box-shadow: 0 1px 25px 0 rgba(0, 0, 0, 0.05) inset, 0 -1px 25px 0 rgba(0, 0, 0, 0.05) inset;
+  -webkit-box-shadow: 0 1px 25px 0 rgba(0, 0, 0, 0.05) inset, 0 -1px 25px 0 rgba(0, 0, 0, 0.05) inset;
+  box-shadow: 0 1px 25px 0 rgba(0, 0, 0, 0.05) inset, 0 -1px 25px 0 rgba(0, 0, 0, 0.05) inset;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+}
+
+.btn{
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0; 
+  -o-border-radius: 0;
+}
 
 
 .flexslider .flex-control-thumbs ol{
@@ -216,12 +242,5 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
   h2{
     font-size: 20px;
     color: #f0ad4e;
-  }
-}
-
-.date_select{
-  select{
-    min-width: 100px;
-    width: auto;
   }
 }

@@ -1,34 +1,20 @@
 <div class="container">
 
   <div id="calendar">
-    <div class="popup span5"> Content here... </div>
+    <%= render 'month_nav' %>
 
-    <h2 id="month">
-      <%= link_to "", user_schedule_path(:date => @date.prev_month), {:style => "margin-right: 30px; font-size: 20px;", :class => "glyphicon glyphicon-chevron-left" }  %>
-      <%= @date.strftime("%B %Y") %>   
-      <%= link_to "", user_schedule_path(:date => @date.next_month), {:style => "margin-left: 30px; font-size: 20px;", :class => "glyphicon glyphicon-chevron-right"} %>
-    </h2>
-
-    <%= calendar @date do |date| %>        
-      <div class="day"> 
+    <%= calendar @date do |date| %>
+      <div class="date-day">
         <%= date.day %>
       </div>
 
-      <% if @events_by_date[date] %>
-        <% @events_by_date[date].each do |event| %>
-          <%= link_to edit_event_path(event), :remote => true do %>
-            <div class="event">
-              <div class="time"> <%= event.starts_at.strftime("%H:%M") %> </div>
-              <div class="name"> <%= event.name %> </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-
+      <%= render :partial => "event", :collection => @events_by_date[date] %>
     <% end %>
+
+    <div class="popup span4 right hidden"> </div>
+    <%= clear %>
   </div>
 
-  <h3> <%= link_to "New Event", new_event_path %> </h3>
   <%= clear nil, :height => 70 %>
 
 </div>
