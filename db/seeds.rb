@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# here we create 2 stub tests 
 2.times do |i|
   Test.create(name: "Test #{i+1}").tap do |test|
   	3.times do |j|
@@ -16,3 +18,7 @@
   	end
   end
 end
+# admin create
+User.create(email: 'admin@mail.com',role: 'Administrator',password: '12345678',name: 'admin')
+# student create
+User.create(email: 'student@mail.com',role: 'Student',password: '12345678',name: 'student')

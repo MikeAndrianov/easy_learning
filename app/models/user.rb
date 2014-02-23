@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   
   validates_format_of :mobile,
     :with => /\+([\d]){3}[-" "]*([\d]){2}[-" "]*([\d]){7}$/i, :multiline => true ,
-      :message => "number must be in +375-xx-xxxxxxx format."
+      :message => "number must be in +375-xx-xxxxxxx format.", :allow_blank => true
 
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
