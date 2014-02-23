@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require home.js.coffee
+//= require angular.min.js
+//= require ng-rails-csrf
 //= require_directory ./bootstrap
 //= require_directory ./andia
 //= require_directory ./prettyPhoto

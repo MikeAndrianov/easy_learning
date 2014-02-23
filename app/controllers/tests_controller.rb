@@ -12,16 +12,36 @@ class TestsController < ApplicationController
     @test = Test.new(name: params[:test][:name]) 
     @test.save    
     redirect_to tests_path
-  end
-
-  def edit
-    @test = Test.find(params[:id])
-  end
+  end  
 
   def destroy    
     @test = Test.find(params[:id])
     @test.destroy
     redirect_to tests_path
+  end
+
+  def edit
+    #rethrow params[:id]
+    session[:test_edit_id]=params[:id]
+  end
+
+  def getTest
+    test=Test.find(session[:test_edit_id])
+    render json: test.as_json(
+      include: {questions:{
+        include: :answers
+      }},except: [:created_at,:updated_at])
+  end
+
+  def addQuestion
+    @question=Question.create(content:params[:content],test_id:params[:test_id])
+    respond_to do |format|
+      format.json { render json: @question.id }
+    end
+  end
+
+  def deleteQuestion
+
   end
 
 end

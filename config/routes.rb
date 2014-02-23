@@ -24,7 +24,8 @@ EasyLearning::Application.routes.draw do
     resource :settings, :only => [:show, :update]
   end
 
-
+  get '/test/edit/getTest' => 'tests#getTest'
+  post '/test/edit/question/add' => 'tests#addQuestion'
 
   
 
