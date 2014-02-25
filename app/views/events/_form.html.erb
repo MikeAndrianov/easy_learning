@@ -1,0 +1,42 @@
+<div class="contact-us">
+  <div class="contact-form span4">
+
+    <%= form_for @event, :html => {:class => 'row'} do |f| %>
+      <%#= f.error_messages %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+
+      <div class="date_select">
+        <%= f.label :starts_at %>
+        <%= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
+      </div>
+
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+
+      <%= f.label :user_ids, "Participants" %>
+      <%= f.collection_select :user_ids, User.all(:conditions => ["id != ?", current_user.id], :order => :name), 
+                                         :id, :name, {}, { :multiple => true } %>
+
+      <%= clear %>
+
+      <%= f.submit "Save", :class => "left" %>
+      <%= link_to "Close", user_schedule_path, :remote => true, :class => "left light-button btn"  %>
+    
+      <% unless @event.new_record? %>
+        <%= link_to "Delete", @event, :confirm => "Are you sure you want to delete this event?", :method => :delete, :class => "light-button btn-danger"  %>
+      <% end %>
+    
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#event_user_ids').chosen()
+  });
+</script>

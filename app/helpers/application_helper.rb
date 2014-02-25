@@ -9,7 +9,7 @@ module ApplicationHelper
     return unless tabs
     html = []
     tabs.each do |tab|
-      tab_class = request.fullpath == tab[:path] ? "current-page #{tab[:class]}" : tab[:class]
+      tab_class = request.fullpath.split(/[\??]/)[0] == tab[:path] ? "current-page #{tab[:class]}" : tab[:class]
       html << (content_tag :li, :class => tab_class, :id => tab[:id] do
         link_to tab[:path], :method => tab[:method] do
           content_tag(:i, '', :class => tab[:icon]) +

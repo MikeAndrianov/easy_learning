@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div id="calendar">
+    <%= render 'month_nav' %>
+
+    <%= calendar @date do |date| %>
+      <div class="date-day">
+        <%= date.day %>
+      </div>
+
+      <%= render :partial => "event", :collection => @events_by_date[date] %>
+    <% end %>
+
+    <div class="popup span4 right hidden"> </div>
+    <%= clear %>
+  </div>
+
+  <%= clear nil, :height => 70 %>
+
+</div>

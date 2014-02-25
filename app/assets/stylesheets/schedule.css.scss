@@ -1,0 +1,134 @@
+@import "colors";
+
+#calendar{
+  padding: 20px;
+  position: relative;
+
+  #month{
+    .nav{
+      font-size: 20px;
+
+      &.prev{ margin-right: 30px; }
+      &.next{ margin-left: 30px; }
+    }
+  }
+
+  .popup{
+    margin:auto;    
+    border: 3px solid $violet_plum;
+    background: white;
+    height: auto;
+    width: 379px;
+
+    .contact-us{
+      margin-top: 0;
+      padding-bottom: 0;
+
+      form{ margin-top: 0;}
+
+      textarea{ max-width: 325px; }
+    }
+
+    .date_select{
+      font-size: 13px;
+      
+      select{
+        font-size: 13px;
+        width: auto;
+      }
+    }
+  }
+  h2{
+    background: $violet_plum;
+    color: white;
+    padding: 50px 50px 0;
+    text-align: left;
+    margin-bottom: 0;
+
+    a{ color: white; }
+
+    a:hover{ color: $light_violet_plum; }
+  }
+
+  table.calendar{
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+
+    &.compact-calendar{ width: 66%; }
+
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid $violet_plum;
+
+    th{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: $violet_plum;
+      font-size: 18px;
+      height: 100px;
+      color: white;
+    }
+
+    td{
+      border: 1px solid $violet_plum;
+      height: 110px;
+      vertical-align: top;
+    }
+
+    .day{
+      margin: 5px;
+
+      .date-day{ margin: 5px; }
+
+      &.today{
+        background: $light_violet_plum;
+        color: white;
+
+        .date-day{ font-weight: bold; }
+      }
+
+      &.notmonth{
+        background: $grey_almost_white;
+        opacity: 0.6;
+      }
+
+      .date{
+        font-size: 16px;
+        text-align: left;
+
+        .event{
+          font-size: 12px;
+          background: $violet_plum;
+          border: 1px solid $violet_plum;
+          color: white;
+          margin: 1px 0;
+          padding: 2px 5px;
+
+          .time{
+            float: left;
+            margin-right: 5px;
+          }
+
+          .name{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .event:hover{
+          color: $violet_plum;
+          background: white;
+
+          -o-transition: all .3s;
+          -moz-transition: all .3s;
+          -webkit-transition: all .3s;
+          -ms-transition: all .3s;
+        }
+      }
+    }
+
+  }
+}

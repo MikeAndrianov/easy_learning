@@ -1,0 +1,17 @@
+<div class="container">
+
+
+<ul>
+  <% @events.each do |event| %>
+    <li> <%= event.name %> </li>
+    Users:
+    <%= event.users.map(&:name).join(" ,") %>
+  <% end %>
+</ul>
+
+
+<%= clear nil, :height => 70 %>
+
+<%= link_to "New Event", new_event_path %>
+
+</div>
