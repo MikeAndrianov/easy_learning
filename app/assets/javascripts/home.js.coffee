@@ -1,8 +1,5 @@
 $(document).ready ->
-  $("#sign-in").hover ->
+  $("#sign-in").on "click", (event) ->
     $(".login-form").toggleClass 'hidden'
-  $(".login-form").hover ->
-    $(this).toggleClass 'hidden'
-    $("#sign-in").toggleClass 'active-element'
-
-
+    $(this).toggleClass 'active-element'
+    return false
