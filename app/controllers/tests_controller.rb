@@ -33,6 +33,8 @@ class TestsController < ApplicationController
       }},except: [:created_at,:updated_at])
   end
 
+  respond_to :json
+
   def addQuestion
     @question=Question.create(content:params[:content],test_id:params[:test_id])
     respond_to do |format|
@@ -41,7 +43,9 @@ class TestsController < ApplicationController
   end
 
   def deleteQuestion
-
+    @q=Question.destroy(params[:_json])
+    render :status => 200,
+           :json => { :success => true}
   end
 
 end

@@ -26,15 +26,24 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
       data: newQuestion
       ).success (data) ->
         $scope.test.questions.unshift(
-          id: data.id
+          id: data
           content: $scope.formQuestionText
           answers: []
         )    
         $scope.formQuestionText = ""
-        return
+      return
 
-        return
-        )
+    return
+  $scope.deleteQuestion = (question)  ->
+    $http(
+      method: 'POST'
+      url: '/test/edit/question/delete'
+      headers: 'Content-Type': 'application/json'
+      data: question.id
+    ).success((data)->
+      $scope.test.questions.splice($scope.test.questions.indexOf(question), 1)
+    )
+)
 
 
 # @TestEdit.controller 'TestCtrl', ['$scope', '$http', '$routeParams'], ($scope, $http, $routeParams) ->

@@ -18,22 +18,23 @@ EasyLearning::Application.routes.draw do
   end
   
   resources :tests
-  resources :events
    
   namespace :user do
     resources :home
     resource :settings, :only => [:show, :update]
-    resource :schedule, :only => [:show]
   end
 
-  get '/test/edit/getTest' => 'tests#getTest'
-  post '/test/edit/question/add' => 'tests#addQuestion'
-  post '/test/edit/question/delete' => 'tests#deleteQuestion'
-
-  
+<<<<<<< Updated upstream
 
 
   
+
+
+  
+=======
+  get 'test_edit' => 'test_edit#index'
+
+>>>>>>> Stashed changes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
