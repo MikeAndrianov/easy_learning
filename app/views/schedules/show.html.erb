@@ -4,9 +4,11 @@
     <%= render 'month_nav' %>
 
     <%= calendar @date do |date| %>
-      <div class="date-day">
-        <%= date.day %>
-      </div>
+      <%= link_to new_event_path(:day => date), :remote => true do  %>
+          <div class="date-day">
+            <%= date.day %>
+          </div>
+      <% end %>
 
       <%= render :partial => "event", :collection => @events_by_date[date] %>
     <% end %>
