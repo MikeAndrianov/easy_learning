@@ -5,36 +5,36 @@ class TestsController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-  	@tests=Test.all
+  	@controls=Control.all
   end
 
   def create
-    @test = Test.new(name: params[:test][:name]) 
-    @test.save    
-    redirect_to tests_path
+    @control = Control.new(name: params[:control][:name]) 
+    @control.save    
+    redirect_to controls_path
   end  
 
   def destroy    
-    @test = Test.find(params[:id])
-    @test.destroy
-    redirect_to tests_path
+    @control = Control.find(params[:id])
+    @control.destroy
+    redirect_to controls_path
   end
 
   def edit
     #rethrow params[:id]
-    session[:test_edit_id]=params[:id]
+    session[:control_edit_id]=params[:id]
   end
 
   def getTest
-    test=Test.find(session[:test_edit_id])
-    render json: test.as_json(
+    control=Control.find(session[:control_edit_id])
+    render json: control.as_json(
       include: {questions:{
         include: :answers
       }},except: [:created_at,:updated_at])
   end
 
   def addQuestion
-    @question=Question.create(content:params[:content],test_id:params[:test_id])
+    @question=Question.create(content:params[:content],control_id:params[:control_id])
     respond_to do |format|
       format.json { render json: @question.id }
     end

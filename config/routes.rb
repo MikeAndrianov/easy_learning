@@ -1,6 +1,6 @@
 EasyLearning::Application.routes.draw do
 
-  get "tests/index"
+  get "controls/index"
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
@@ -17,7 +17,7 @@ EasyLearning::Application.routes.draw do
     end
   end
   
-  resources :tests
+  resources :controls
   resources :events
    
   namespace :user do
@@ -26,8 +26,8 @@ EasyLearning::Application.routes.draw do
     resource :schedule, :only => [:show]
   end
 
-  get '/test/edit/getTest' => 'tests#getTest'
-  post '/test/edit/question/add' => 'tests#addQuestion'
+  get '/test/edit/getTest' => 'controls#getTest'
+  post '/test/edit/question/add' => 'controls#addQuestion'
 
   
 

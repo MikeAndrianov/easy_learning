@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220205805) do
+ActiveRecord::Schema.define(version: 20140227134454) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20140220205805) do
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "controls", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,12 +75,6 @@ ActiveRecord::Schema.define(version: 20140220205805) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "roles", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tests", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
