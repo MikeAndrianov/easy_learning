@@ -50,6 +50,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :test do
+	gem 'spork', '1.0.0rc3'
+end
+
 gem 'dynamic_form'
 
 
