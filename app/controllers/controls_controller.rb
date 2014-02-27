@@ -1,4 +1,4 @@
-class TestsController < ApplicationController
+class ControlsController < ApplicationController
   # I've added create to except because otherwise I get ForbiddenAttributesError on create action
   # maybe we should use workaround from here https://github.com/ryanb/cancan/issues/835
   # this is temp stub, and should be fixed!!!

@@ -1,6 +1,5 @@
 EasyLearning::Application.routes.draw do
 
-  get "controls/index"
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
