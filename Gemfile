@@ -47,6 +47,7 @@ gem 'rails_admin'
 group :development, :test do
   gem 'thin'
   gem 'mysql2'
+  gem 'rspec-rails'
 end
 
 gem 'dynamic_form'
