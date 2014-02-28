@@ -77,7 +77,7 @@ describe RegistrationsController do
 	    		post :create, user: user_attr
 	    		@count = User.count
 	    		post :create, user: user_attr
-			end
+				end
 				# it { response.code.should eq("200") }
 				it { User.count.should be(@count) }
 			end
