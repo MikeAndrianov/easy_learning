@@ -52,6 +52,7 @@ end
 
 group :test do
 	gem 'spork', '1.0.0rc3'
+	gem 'factory_girl_rails'
 end
 
 gem 'dynamic_form'
