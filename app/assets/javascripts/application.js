@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require home.js.coffee
+//= require_tree
+
 //= require angular.min.js
 //= require ng-rails-csrf
 //= require_directory ./bootstrap

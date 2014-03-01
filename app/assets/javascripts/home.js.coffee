@@ -3,3 +3,4 @@ $(document).ready ->
     $(".login-form").toggleClass 'hidden'
     $(this).toggleClass 'active-element'
     return false
+
