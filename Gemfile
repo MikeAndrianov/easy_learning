@@ -48,6 +48,9 @@ group :development, :test do
   gem 'thin'
   gem 'mysql2'
   gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-spork'
 end
 
 group :test do
