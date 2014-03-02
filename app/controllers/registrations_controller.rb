@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :set_the_header
   before_filter :user_params, :only => [:update, :create]
+  before_filter :configure_permitted_parameters, :only => [:create]
 
   def create
     # only Students can register from home page
@@ -35,5 +36,8 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:sign_up)
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :mobile, :password, :password_confirmation) }
+  end
 
 end
