@@ -27,19 +27,15 @@ class User < ActiveRecord::Base
   ROLES = ["Administrator", "Lecturer", "Student"]
 
   def admin?
-    role == "Administrator"
+    self.class.name == "Admin"
   end
 
   def lecturer?
-    role == "Lecturer"
+    self.class.name == "Lecturer"
   end
 
-  # def student? 
-  #   role == "Student"
-  # end
-
   def student?
-    type == "Student"
+    self.class.name == "Student"
   end
 
   def roles=(roles)

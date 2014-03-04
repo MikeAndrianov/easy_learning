@@ -4,8 +4,9 @@ EasyLearning::Application.routes.draw do
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
-  devise_for :users, controllers: {sessions: "sessions", registrations: "registrations"}
 
+  devise_for :users, controllers: { sessions: "sessions", registrations: "registrations" }
+ 
   root "home#index"
 
   resources :home do
@@ -24,7 +25,21 @@ EasyLearning::Application.routes.draw do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
+
+    namespace :admin do
+      root "home#index"
+    end
+
+    namespace :lecturer do
+      root "home#index"
+    end
+
+    namespace :student do
+      root "home#index"
+    end
   end
+
+  
 
   get '/test/edit/getTest' => 'tests#getTest'
   post '/test/edit/question/add' => 'tests#addQuestion'
