@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_app_name
   before_filter :set_navigation_tabs
   layout :set_layout
+  helper_method :admin?, :lecturer?, :student?
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:fail] = "Access denied!"
@@ -12,21 +13,32 @@ class ApplicationController < ActionController::Base
   end
 
   def account_url
-    return new_user_session_url unless user_signed_in?
-    case current_user.class.name
-    when "Admin"
+    # return new_user_session_url unless user_signed_in?
+    if admin?
       user_admin_root_url
-    when "Lecturer"
+    elsif lecturer?
       user_lecturer_root_url
-    when "Student"
+    elsif student?
       user_student_root_url
     else
       root_url
-    end if user_signed_in?
+    end
+  end
+
+  protected
+  
+  def admin?
+    current_user.admin?
+  end
+
+  def lecturer?
+    current_user.lecturer?
+  end
+
+  def student?
+    current_user.student?
   end
   
-  protected
-
   def set_app_name
     @app_name = "EasyLearing"
   end
