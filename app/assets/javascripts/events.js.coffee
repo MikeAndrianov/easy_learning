@@ -7,3 +7,6 @@ $(document).ready ->
       data: {
         'day': $(this).attr('day')
       }
+
+
+

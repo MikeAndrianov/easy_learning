@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220205805) do
+ActiveRecord::Schema.define(version: 20140302215851) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140220205805) do
     t.text     "description"
     t.datetime "starts_at"
     t.string   "location"
+    t.boolean  "is_periodical"
+    t.datetime "period"
   end
 
   create_table "participations", force: true do |t|

@@ -10,6 +10,18 @@
       <%= f.label :description %>
       <%= f.text_area :description %>
 
+      <div id="is_periodical">
+        <%= f.label :is_periodical, "periodical" %>
+        <%= f.check_box :is_periodical %>
+      </div>
+
+      <div class="hidden">
+        
+          <%= f.label :period, "period" %>
+          <%= f.select :period, [1.day,1.week,1.month,1.year] %>
+        
+      </div>
+
       <div class="date_select">
         <%= f.label :starts_at %>
         <%= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
@@ -37,6 +49,12 @@
 
 <script>
   $(document).ready(function(){
-    $('#event_user_ids').chosen()
-  });
+    $('#event_user_ids').chosen()  
+    });
+
+  $(document).ready(function(){
+     if($("#is_periodical").is(':checked')) {
+      $(".hidden").toggleClass("hidden")
+     });   
+
 </script>
