@@ -17,14 +17,13 @@ EasyLearning::Application.routes.draw do
     end
   end
   
-  resources :controls
+  resources :tests
   resources :events
    
   namespace :user do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
-
     namespace :admin do
       root "home#index"
     end
@@ -38,8 +37,8 @@ EasyLearning::Application.routes.draw do
     end
   end
 
-  get '/test/edit/getTest' => 'controls#getTest'
-  post '/test/edit/question/add' => 'controls#addQuestion'
+  get '/test/edit/getTest' => 'tests#getTest'
+  post '/test/edit/question/add' => 'tests#addQuestion'
 
 
 
