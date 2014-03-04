@@ -22,5 +22,8 @@ module EasyLearning
     config.secret_key_base = '629d9f462ff5acde80b44bb2d495d76052fd79ec1880e796800bcdc28981736bd136aa098ffe578ec9e9f2930fc6dcacb2fce24dbc4fadf84a58ecdf7660094b'
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end

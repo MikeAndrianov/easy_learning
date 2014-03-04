@@ -1,14 +1,14 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-@testEditApp = angular.module("testEditApp", ['ng-rails-csrf'])
+@controlEditApp = angular.module("controlEditApp", ['ng-rails-csrf'])
 
 $(document).on('ready page:load', ->
-  angular.bootstrap(document, ['testEditApp'])
+  angular.bootstrap(document, ['controlEditApp'])
   )
 
 
-testEditApp.controller('TestCtrl', ($scope,$http)->
+controlEditApp.controller('ControlCtrl', ($scope,$http)->
   $http.get('/test/edit/getTest')
   .then( (res)-> 
     $scope.test = res.data
@@ -17,7 +17,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
   $scope.addQuestion = ->
     newQuestion =
       content: $scope.formQuestionText
-      test_id: $scope.test.id
+      control_id: $scope.test.id
 
     $http(
       method: "POST"
@@ -25,7 +25,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
       headers: "Content-Type": "application/json"
       data: newQuestion
       ).success (data) ->
-        $scope.test.questions.unshift(
+        $scope.control.questions.unshift(
           id: data.id
           content: $scope.formQuestionText
           answers: []
