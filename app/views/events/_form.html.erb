@@ -15,12 +15,15 @@
         <%= f.check_box :is_periodical %>
       </div>
 
-      <div class="hidden">
-        
-          <%= f.label :period, "period" %>
-          <%= f.select :period, [1.day,1.week,1.month,1.year] %>
-        
+
+      <div class="date_select">
+        <%= f.label :start_date, "Starts at" %>
+        <%= f.text_field :start_date, :value => (f.object.start_date.strftime('%d-%m-%Y') if f.object.start_date), :class => "pick_date" %>
+        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
+        <%= f.time_select :start_time %>
+
       </div>
+    
 
       <div class="date_select">
         <%= f.label :starts_at %>
@@ -48,13 +51,20 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-    $('#event_user_ids').chosen()  
-    });
+  $('.pick_date').datepicker({
+    weekStart: 1,
+    format: 'dd-mm-yyyy'
+  }).on('changeDate', function(){
+    $(".datepicker").hide()
+  });
 
   $(document).ready(function(){
-     if($("#is_periodical").is(':checked')) {
-      $(".hidden").toggleClass("hidden")
-     });   
+    $('#event_user_ids').chosen()  
+  });
+
+  // $(document).ready(function(){
+  //    if($("#is_periodical").is(':checked')) {
+  //     $(".hidden").toggleClass("hidden")
+  //    });   
 
 </script>
