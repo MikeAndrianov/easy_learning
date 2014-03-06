@@ -54,6 +54,11 @@ footer{
   position: relative;
 }
 
+input[type='checkbox']{
+  height: auto !important;
+  width: auto !important;
+}
+
 .active-element {
     background: $violet_plum;
     color: white;
@@ -135,8 +140,32 @@ form button, form input[type="submit"]{
     text-shadow: 0 1px 0 rgba(255,255,255,.7);
   }
 
-  form textarea{
-    height: 80px;
+  form{
+    textarea{
+      height: 80px;
+    }
+
+    select{
+      border: 1px solid #ddd;
+      -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      color: #888;
+      font-size: 13px;
+      font-style: italic;
+
+      &:focus{
+        border: 1px solid #bbb;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      
+    }
   }
 }
 
