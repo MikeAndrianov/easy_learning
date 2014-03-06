@@ -56,23 +56,23 @@ class ApplicationController < ActionController::Base
     if admin?
       [
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_admin_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_admin_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif lecturer?
       [
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_lecturer_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },         
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_lecturer_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif student?
       [
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_student_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_student_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     else

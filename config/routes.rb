@@ -1,6 +1,6 @@
 EasyLearning::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
   
   get "home/index"
 
@@ -24,16 +24,28 @@ EasyLearning::Application.routes.draw do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
+  end
+  
+  namespace :user, path: "", only: [] do
     namespace :admin do
       root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
     end
 
     namespace :lecturer do
       root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
     end
 
     namespace :student do
       root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
     end
   end
 
