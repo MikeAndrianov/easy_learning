@@ -28,15 +28,15 @@ class ApplicationController < ActionController::Base
   protected
   
   def admin?
-    current_user.admin?
+    current_user && current_user.admin?
   end
 
   def lecturer?
-    current_user.lecturer?
+    current_user && current_user.lecturer?
   end
 
   def student?
-    current_user.student?
+    current_user && current_user.student?
   end
   
   def set_app_name
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     return if params[:controller] == ("rails_admin/main" || "rails_admin/application")
 
     @tabs = 
-    if current_user && current_user.admin?
+    if admin?
       [
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
@@ -61,14 +61,14 @@ class ApplicationController < ActionController::Base
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
-    elsif current_user && current_user.lecturer?
+    elsif lecturer?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
-    elsif current_user && current_user.student?
+    elsif student?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
