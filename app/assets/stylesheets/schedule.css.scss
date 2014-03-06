@@ -31,10 +31,15 @@
 
     .date_select{
       font-size: 13px;
+      input[type="text"]{
+        width: 70px;
+        margin-right: 15px;
+      }
       
       select{
         font-size: 13px;
         width: auto;
+        height: 34px;
       }
     }
   }
