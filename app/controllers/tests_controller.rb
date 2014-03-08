@@ -48,4 +48,11 @@ class TestsController < ApplicationController
            :json => { :success => true}
   end
 
+  def addAnswer
+    @answer=Answer.create(content: params[:content],question_id: params[:questionId])
+    respond_to do |format|
+      format.json { render json: @answer.id }
+    end
+  end
+
 end

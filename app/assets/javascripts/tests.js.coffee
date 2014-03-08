@@ -43,10 +43,27 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
     ).success((data)->
       $scope.test.questions.splice($scope.test.questions.indexOf(question), 1)
     )
+
+  $scope.addAnswer = (question, formAnswerText) ->
+    newAnswer =
+      content: formAnswerText
+      questionId: question.id
+      isRight: false
+
+    $http(
+      method: "POST"
+      url: "/test/edit/answer/add"
+      headers: "Content-Type": "application/json"
+      data: newAnswer
+    ).success (data) ->
+      question.answers.push
+        id: data.id
+        content: formAnswerText
+        questionId: question.id
+        isRight: false
+
+      formAnswerText = ""
+      return
+
+    return  
 )
-
-
-# @TestEdit.controller 'TestCtrl', ['$scope', '$http', '$routeParams'], ($scope, $http, $routeParams) ->
-#     $scope.test=$routeParams;
-#   )
-

@@ -29,6 +29,7 @@ EasyLearning::Application.routes.draw do
   get '/test/edit/getTest' => 'tests#getTest'
   post '/test/edit/question/add' => 'tests#addQuestion'
   post '/test/edit/question/delete' => 'tests#deleteQuestion'
+  post '/test/edit/answer/add' => 'tests#addAnswer'
 
   
 

@@ -38,6 +38,11 @@
             </tr>
           </tbody>
         </table>
+        <form name="answerForm">        
+          <input type="text" name="answerText" ng-model="formAnswerText" placeholder="new answer" required>         
+          <button class="btn" id="addAnswer" ng-click="addAnswer(question,formAnswerText)"
+          ng-disabled="answerForm.answerText.$invalid"><i class="glyphicon glyphicon-plus"></i></button>         
+        </form>
       </div>
     </div>
   </div>
