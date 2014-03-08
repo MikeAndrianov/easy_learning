@@ -29,11 +29,12 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
           id: data
           content: $scope.formQuestionText
           answers: []
-        )    
+        )
         $scope.formQuestionText = ""
-      return
+        return
 
     return
+
   $scope.deleteQuestion = (question)  ->
     $http(
       method: 'POST'
@@ -57,7 +58,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
       data: newAnswer
     ).success (data) ->
       question.answers.push
-        id: data.id
+        id: data
         content: formAnswerText
         questionId: question.id
         isRight: false
@@ -65,5 +66,17 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
       formAnswerText = ""
       return
 
-    return  
+    return 
+
+  $scope.deleteAnswer = (question, answer) ->
+    $http(
+      method: "POST"
+      url: "/test/edit/answer/delete"
+      headers: "Content-Type": "application/json"
+      data: answer.id
+    ).success (data) ->
+      question.answers.splice question.answers.indexOf(answer), 1
+      return
+
+    return   
 )

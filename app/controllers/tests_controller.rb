@@ -43,7 +43,7 @@ class TestsController < ApplicationController
   end
 
   def deleteQuestion
-    @q=Question.destroy(params[:_json])
+    Question.destroy(params[:_json])
     render :status => 200,
            :json => { :success => true}
   end
@@ -53,6 +53,12 @@ class TestsController < ApplicationController
     respond_to do |format|
       format.json { render json: @answer.id }
     end
+  end
+
+  def deleteAnswer
+    Answer.destroy(params[:_json])
+    render :status => 200,
+           :json => { :success => true}
   end
 
 end

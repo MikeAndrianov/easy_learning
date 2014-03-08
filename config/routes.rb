@@ -30,6 +30,7 @@ EasyLearning::Application.routes.draw do
   post '/test/edit/question/add' => 'tests#addQuestion'
   post '/test/edit/question/delete' => 'tests#deleteQuestion'
   post '/test/edit/answer/add' => 'tests#addAnswer'
+  post '/test/edit/answer/delete' => 'tests#deleteAnswer'
 
   
 
