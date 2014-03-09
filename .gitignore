@@ -30,4 +30,6 @@ test
 *.swp
 .DS_Store
 REVISION
+
+# ignore IDE files
 .idea

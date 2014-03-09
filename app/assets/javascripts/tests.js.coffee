@@ -61,7 +61,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
         id: data
         content: formAnswerText
         questionId: question.id
-        isRight: false
+        is_right: false
 
       formAnswerText = ""
       return
