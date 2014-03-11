@@ -57,6 +57,7 @@ footer{
 input[type='checkbox']{
   height: auto !important;
   width: auto !important;
+  margin-right: 10px;
 }
 
 .active-element {
@@ -143,6 +144,12 @@ form button, form input[type="submit"]{
   form{
     textarea{
       height: 80px;
+    }
+
+    .inline-text{
+      top: -3px;
+      position: relative;
+      margin-right: 10px;
     }
 
     select{
@@ -271,5 +278,13 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
   h2{
     font-size: 20px;
     color: #f0ad4e;
+  }
+}
+
+.datepicker{
+  .datepicker-days{
+    .current-date{
+      border: 1px solid $violet_plum;
+    }
   }
 }

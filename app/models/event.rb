@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :participations, :validate => false
 
   validates :name, :starts_at, :presence => true
+  #
+  #TODO: add validation for checking finish date must be after start date if event is recurrent
 
 
   #
@@ -22,11 +24,5 @@ class Event < ActiveRecord::Base
       self.send(field_name).strftime('%H:%M') if self.send(field_name)
     end
   end
-
-  # [:start_time, :finish_time].each do |field_name|
-  #   define_method("#{field_name}_string=") do |time|
-  #     self.send("#{field_name}_string=",time.strftime('%H:%M'))
-  #   end
-  # end
 
 end

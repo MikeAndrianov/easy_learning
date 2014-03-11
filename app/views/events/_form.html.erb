@@ -10,28 +10,34 @@
       <%= f.label :description %>
       <%= f.text_area :description %>
 
-      <div id="is_periodical">
-        <%= f.label :is_periodical, "periodical" %>
-        <%= f.check_box :is_periodical %>
-      </div>
-
-
-      <div class="date_select">
-        <%= f.label :start_date, "Starts at" %>
-        <%= f.text_field :start_date, :value => (f.object.start_date.strftime('%d-%m-%Y') if f.object.start_date), :class => "pick_date" %>
-        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
-        <%= f.time_select :start_time %>
-
-      </div>
-    
-
-      <div class="date_select">
-        <%= f.label :starts_at %>
-        <%= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
-      </div>
-
       <%= f.label :location %>
       <%= f.text_field :location %>
+
+      <div class="date_select">
+        <%= f.label :starts_at, "Starts at" %>
+        <%= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
+        <span class="inline-text"> at </span>
+        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
+        <%= f.time_select :starts_at %>
+      </div>
+
+      <div class="date_select">
+        <%#= f.label :starts_at %>
+        <%#= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
+      </div>
+
+      <div id="is_periodical">
+        <%= f.check_box :is_periodical, :class => "left" %>
+        <%= f.label :is_periodical, "Recurrent" %>
+      </div>
+
+      <div class="date_select hidden" id="finishes_at_date">
+        <%= f.label :starts_at, "Starts at" %>
+        <%= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
+        <span class="inline-text"> at </span>
+        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
+        <%= f.time_select :starts_at %>
+      </div>
 
       <%= f.label :user_ids, "Participants" %>
       <%= f.collection_select :user_ids, User.all(:conditions => ["id != ?", current_user.id], :order => :name), 
@@ -51,20 +57,34 @@
 </div>
 
 <script>
+  function mark_current_date(){
+    var d = new Date();
+    var today = d.getDate();
+
+    $(".datepicker-days .table-condensed td").each(function() {
+      if($(this).html() == today && $(this).not( $(this).hasClass("old") || $(this).hasClass("new") ) ){
+        $(this).addClass("current-date")
+      }
+    });
+  }
+
+
   $('.pick_date').datepicker({
     weekStart: 1,
     format: 'dd-mm-yyyy'
   }).on('changeDate', function(){
     $(".datepicker").hide()
-  });
+  }).on('click', function(){mark_current_date()});;
 
-  $(document).ready(function(){
-    $('#event_user_ids').chosen()  
-  });
+  
 
   // $(document).ready(function(){
-  //    if($("#is_periodical").is(':checked')) {
-  //     $(".hidden").toggleClass("hidden")
-  //    });   
+  //   $('#event_user_ids').chosen()  
+  // });
+
+
+  $("#event_is_periodical").on('change', function(){
+    $("#finishes_at_date").toggleClass("hidden")
+  }); 
 
 </script>

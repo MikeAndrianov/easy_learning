@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20140305151709) do
     t.boolean  "is_periodical"
     t.datetime "period"
     t.date     "start_date"
-    t.datetime "start_time"
+    t.time     "start_time"
     t.date     "finish_date"
-    t.datetime "finish_time"
+    t.time     "finish_time"
   end
 
   create_table "participations", force: true do |t|

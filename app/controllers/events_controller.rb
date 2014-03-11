@@ -71,6 +71,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
+    params[:event][:starts_at] = Date.parse(params[:event][:starts_at])
     params[:event][:user_ids].reject!{ |id| id.empty? }
     params[:event].permit!
   end
