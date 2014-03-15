@@ -78,5 +78,16 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
       question.answers.splice question.answers.indexOf(answer), 1
       return
 
-    return   
+    return
+
+  $scope.triggerIsRight = (answer) ->
+    $http(
+      method: "POST"
+      url: "/test/edit/answer/triggerIsRight"
+      headers: "Content-Type": "application/json"
+      data: answer.id
+    ).success (data) ->
+      return
+
+    return     
 )

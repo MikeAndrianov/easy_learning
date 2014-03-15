@@ -29,7 +29,7 @@
           </thead>
           <tbody>
             <tr ng-repeat="answer in question.answers">
-              <td><input type="checkbox" ng-model="answer.isRight" ng-click="triggerIsRight(answer)"></td>
+              <td><input type="checkbox" ng-model="answer.is_right" ng-click="triggerIsRight(answer)"></td>
               <td><strong>{{answer.content}}</strong></td>
               <td>
                 <button ng-click="deleteAnswer(question,answer)" class="btn"><i class="glyphicon glyphicon-remove"></i>

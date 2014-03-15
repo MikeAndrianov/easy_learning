@@ -36,7 +36,7 @@ class TestsController < ApplicationController
   respond_to :json
 
   def addQuestion
-    @question=Question.create(content:params[:content],test_id:params[:test_id])
+    @question=Question.create!(content:params[:content],test_id:params[:test_id])
     respond_to do |format|
       format.json { render json: @question.id }
     end
@@ -49,7 +49,7 @@ class TestsController < ApplicationController
   end
 
   def addAnswer
-    @answer=Answer.create(content: params[:content],question_id: params[:questionId])
+    @answer=Answer.create!(content: params[:content],question_id: params[:questionId])
     respond_to do |format|
       format.json { render json: @answer.id }
     end
@@ -57,6 +57,14 @@ class TestsController < ApplicationController
 
   def deleteAnswer
     Answer.destroy(params[:_json])
+    render :status => 200,
+           :json => { :success => true}
+  end
+
+  def triggerAnswer
+    a=Answer.find(params[:_json])
+    a.is_right=!a.is_right
+    a.save!
     render :status => 200,
            :json => { :success => true}
   end

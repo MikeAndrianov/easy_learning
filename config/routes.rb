@@ -19,6 +19,7 @@ EasyLearning::Application.routes.draw do
   
   resources :tests
   resources :events
+  
    
   namespace :user do
     resources :home
@@ -31,6 +32,7 @@ EasyLearning::Application.routes.draw do
   post '/test/edit/question/delete' => 'tests#deleteQuestion'
   post '/test/edit/answer/add' => 'tests#addAnswer'
   post '/test/edit/answer/delete' => 'tests#deleteAnswer'
+  post '/test/edit/answer/triggerIsRight' => 'tests#triggerAnswer'
 
   
 
