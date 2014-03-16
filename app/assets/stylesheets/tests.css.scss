@@ -12,3 +12,16 @@
 .content{
   margin-bottom: 120px;  
 }
+form[name="questionForm"]{
+	text-align: center;
+	display: inline-block;
+}
+textarea[name="questionText"]{
+	width: 600px;
+	display: block;
+}
+button#addQuestion{
+	vertical-align:top;
+	display: block;
+	float: right;
+}

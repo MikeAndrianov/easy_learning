@@ -5,8 +5,8 @@
   <div class="container">
     <div class="hero-unit"><h2>{{test.name}}</h2></div>
     <div class="container">
-      <form name="questionForm" class="form-horizontal" ng-submit="addQuestion()">
-        <input type="text" name="questionText" class="input-large " ng-model="formQuestionText" ng-model-instantly placeholder="your new question" required>
+      <form name="questionForm" class="form-horizontal" ng-submit="addQuestion()">        
+        <textarea name="questionText" ng-model="formQuestionText" ng-model-instantly placeholder="your new question" required rows="5"></textarea>
         <button class="btn" id="addQuestion" type="submit" value="add" ng-disabled="!questionForm.$valid"><i
           class="glyphicon glyphicon-plus"></i> Add
         </button>
