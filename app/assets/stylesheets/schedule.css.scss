@@ -11,6 +11,14 @@
       &.prev{ margin-right: 30px; }
       &.next{ margin-left: 30px; }
     }
+
+    select{
+      width: 145px;
+      margin-top: 5px;
+      border-radius: 0;
+      -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+    }
   }
 
   .popup{

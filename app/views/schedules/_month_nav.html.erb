@@ -2,4 +2,5 @@
   <%= link_to "", user_schedule_path(:date => @date.prev_month), :class => "nav prev glyphicon glyphicon-chevron-left"  %>
   <%= @date.strftime("%B %Y") %>   
   <%= link_to "", user_schedule_path(:date => @date.next_month), :class => "nav next glyphicon glyphicon-chevron-right" %>
+  <%= select_tag 'created by', options_for_select(Event::CREATED_BY_FILTER), :class => "right" %>
 </h2>

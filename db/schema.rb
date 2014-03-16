@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305151709) do
+ActiveRecord::Schema.define(version: 20140316144530) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -37,12 +37,10 @@ ActiveRecord::Schema.define(version: 20140305151709) do
     t.text     "description"
     t.datetime "starts_at"
     t.string   "location"
-    t.boolean  "is_periodical"
-    t.datetime "period"
-    t.date     "start_date"
-    t.time     "start_time"
-    t.date     "finish_date"
-    t.time     "finish_time"
+    t.boolean  "is_recurrent"
+    t.string   "period"
+    t.datetime "ends_at"
+    t.integer  "created_by_id", default: 1
   end
 
   create_table "participations", force: true do |t|

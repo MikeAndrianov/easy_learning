@@ -84,6 +84,7 @@
 .datepicker td.active.active,
 .datepicker td.active:hover.active {
   background-color: #9d426b;
+  border: 1px solid #9d426b;
 }
 .datepicker td span {
   display: block;

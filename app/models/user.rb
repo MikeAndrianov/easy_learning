@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :participations
   has_many :events, :through => :participations
+  has_many :events_created_by_me, :class_name => 'Event', :foreign_key => :created_by_id
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -25,6 +26,10 @@ class User < ActiveRecord::Base
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
   ROLES = ["Administrator", "Lecturer", "Student"]
+
+  def shared_events
+    Event.shared_for(self)
+  end
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum

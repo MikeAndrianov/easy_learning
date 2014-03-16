@@ -14,29 +14,24 @@
       <%= f.text_field :location %>
 
       <div class="date_select">
-        <%= f.label :starts_at, "Starts at" %>
-        <%= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
-        <span class="inline-text"> at </span>
-        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
-        <%= f.time_select :starts_at %>
+        <%= f.label :starts_at %>
+        <%= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
+        <%#= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
+        <!-- <span class="inline-text"> at </span> -->
+        <%#= f.time_select :starts_at %>
       </div>
 
-      <div class="date_select">
-        <%#= f.label :starts_at %>
-        <%#= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
+      <div id="is_recurrent">
+        <%= f.check_box :is_recurrent, :class => "left" %>
+        <%= f.label :is_recurrent, "Recurrent" %>
       </div>
 
-      <div id="is_periodical">
-        <%= f.check_box :is_periodical, :class => "left" %>
-        <%= f.label :is_periodical, "Recurrent" %>
-      </div>
+      <div class="date_select <%= 'hidden' unless @event.is_recurrent %>" id="for_recurring_event">
+        <%= f.label :period %>
+        <%= f.select :period, options_for_select(Event::PERIOD, @event.period || "week") %>
 
-      <div class="date_select hidden" id="finishes_at_date">
-        <%= f.label :starts_at, "Starts at" %>
-        <%= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
-        <span class="inline-text"> at </span>
-        <%#= f.select :start_time, am_pm_time_list, :selected => f.object.start_time.try(:strftime, '%H:%M') %>
-        <%= f.time_select :starts_at %>
+        <%= f.label :ends_at %>
+        <%= f.date_select :ends_at, :default => { :day => 1.days.from_now.day, :minute => 0 }, :order => [:day, :month, :year] %>
       </div>
 
       <%= f.label :user_ids, "Participants" %>
@@ -74,7 +69,7 @@
     format: 'dd-mm-yyyy'
   }).on('changeDate', function(){
     $(".datepicker").hide()
-  }).on('click', function(){mark_current_date()});;
+  }).on('click', function(){ mark_current_date() });
 
   
 
@@ -83,8 +78,8 @@
   // });
 
 
-  $("#event_is_periodical").on('change', function(){
-    $("#finishes_at_date").toggleClass("hidden")
+  $("#event_is_recurrent").on('change', function(){
+    $("#for_recurring_event").toggleClass("hidden")
   }); 
 
 </script>
