@@ -4,10 +4,11 @@
 
 #addQuestion{
   margin-bottom: 15px;
+  width: 150px;
 }
 #addAnswer{
   margin-bottom: 24px;
-  width: 40px;
+  width: 140px;
 }
 .content{
   margin-bottom: 120px;  
@@ -24,4 +25,20 @@ button#addQuestion{
 	vertical-align:top;
 	display: block;
 	float: right;
+}
+#testContainer{
+  word-break: break-all;
+}
+form[name="answerForm"]{
+  text-align: center;
+  display: inline-block;
+}
+textarea[name="answerText"]{
+  width: 600px;
+  display: block;
+}
+button#addAnswer{
+  vertical-align:top;
+  display: block;
+  float: right;
 }

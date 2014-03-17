@@ -1,14 +1,14 @@
 <%= javascript_include_tag params[:controller] %>
 
-<div ng-controller="TestCtrl">
+<div ng-controller="TestCtrl" id="testContainer">
 
   <div class="container">
     <div class="hero-unit"><h2>{{test.name}}</h2></div>
     <div class="container">
       <form name="questionForm" class="form-horizontal" ng-submit="addQuestion()">        
-        <textarea name="questionText" ng-model="formQuestionText" ng-model-instantly placeholder="your new question" required rows="5"></textarea>
+        <textarea name="questionText" ng-model="formQuestionText" ng-model-instantly placeholder="your new question goes here" required rows="5"></textarea>
         <button class="btn" id="addQuestion" type="submit" value="add" ng-disabled="!questionForm.$valid"><i
-          class="glyphicon glyphicon-plus"></i> Add
+          class="glyphicon glyphicon-plus"></i> Add question
         </button>
       </form>
 
@@ -20,31 +20,32 @@
           <thead>
             <tr>
               <th class="span1">is right</th>
-              <th class="span6"><h4>{{question.content}}</h4></th>
-              <th class="span2">
-                <button ng-click="deleteQuestion(question)" class="btn"><i class="glyphicon glyphicon-remove"></i>
+              <th class="span10"><h4>{{question.content}}</h4></th>
+              <th class="span1">
+                <button ng-click="deleteQuestion(question)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>
                 </button>
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <tr ng-repeat="answer in question.answers">
-              <td><input type="checkbox" ng-model="answer.is_right" ng-click="triggerIsRight(answer)"></td>
-              <td><strong>{{answer.content}}</strong></td>
-              <td>
-                <button ng-click="deleteAnswer(question,answer)" class="btn"><i class="glyphicon glyphicon-remove"></i>
+              <td class="span1"><input type="checkbox" ng-model="answer.is_right" ng-click="triggerIsRight(answer)"></td>
+              <td class="span10"><strong>{{answer.content}}</strong></td>
+              <td class="span1">
+                <button ng-click="deleteAnswer(question,answer)" class="btn">
+                  <i class="glyphicon glyphicon-remove"></i>
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
-        <form name="answerForm">        
-          <input type="text" name="answerText" ng-model="formAnswerText" placeholder="new answer" required>         
-          <button class="btn" id="addAnswer" ng-click="addAnswer(question,formAnswerText)"
-          ng-disabled="answerForm.answerText.$invalid"><i class="glyphicon glyphicon-plus"></i></button>         
-        </form>
-      </div>
-    </div>
-  </div>
+        <form name="answerForm">
+        <textarea name="answerText" ng-model="formAnswerText" placeholder="new answer goes here" required rows="3"></textarea>      
+         <button class="btn" id="addAnswer" ng-click="addAnswer(question,formAnswerText)"
+         ng-disabled="answerForm.answerText.$invalid"><i class="glyphicon glyphicon-plus"></i>Add answer</button>         
+       </form>
+     </div>
+   </div>
+ </div>
 </div>
 
