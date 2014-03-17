@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
   def account_url
     # return new_user_session_url unless user_signed_in?
     if admin?
-      user_admin_root_url
+      user_admin_schedule_url
     elsif lecturer?
-      user_lecturer_root_url
+      user_lecturer_schedule_url
     elsif student?
-      user_student_root_url
+      user_student_schedule_url
     else
       root_url
     end
