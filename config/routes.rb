@@ -7,6 +7,10 @@ EasyLearning::Application.routes.draw do
 
   root "home#index"
 
+  get "files_sharing" => "files_sharing#index"
+  get "files_sharing/omniauth_callback" => "files_sharing#omniauth_callback"
+  post "files_sharing/upload" => "files_sharing#upload"
+
   resources :home do
     collection do
       get 'contact'
