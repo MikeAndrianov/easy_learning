@@ -5,14 +5,40 @@ class ApplicationController < ActionController::Base
   before_filter :set_app_name
   before_filter :set_navigation_tabs
   layout :set_layout
+  helper_method :admin?, :lecturer?, :student?
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:fail] = "Access denied!"
     redirect_to '/'
   end
 
-  protected
+  def account_url
+    # return new_user_session_url unless user_signed_in?
+    if admin?
+      user_admin_schedule_url
+    elsif lecturer?
+      user_lecturer_schedule_url
+    elsif student?
+      user_student_schedule_url
+    else
+      root_url
+    end
+  end
 
+  protected
+  
+  def admin?
+    current_user && current_user.admin?
+  end
+
+  def lecturer?
+    current_user && current_user.lecturer?
+  end
+
+  def student?
+    current_user && current_user.student?
+  end
+  
   def set_app_name
     @app_name = "EasyLearing"
   end
@@ -27,26 +53,26 @@ class ApplicationController < ActionController::Base
     return if params[:controller] == ("rails_admin/main" || "rails_admin/application")
 
     @tabs = 
-    if current_user && current_user.admin?
+    if admin?
       [
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => controls_path},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_admin_schedule_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_admin_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
-    elsif current_user && current_user.lecturer?
+    elsif lecturer?
       [
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => controls_path},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },         
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_lecturer_schedule_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_lecturer_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
-    elsif current_user && current_user.student?
+    elsif student?
       [
-        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => controls_path},
-        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
+        { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_student_schedule_path },
+        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
+        { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_student_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     else

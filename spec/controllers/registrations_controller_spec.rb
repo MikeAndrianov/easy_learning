@@ -8,16 +8,13 @@ describe RegistrationsController do
 	
 	describe "Sign up" do
 
-		# Is it OK that after successfully signing up there are several redirects?
-		# ( home#index -> user/home#index -> schedules#show )
-		#
 		describe "valid" do
 			before do
 				@count = User.count
-				user_attr = FactoryGirl.attributes_for(:valid_user)
+				user_attr = FactoryGirl.attributes_for(:student)
     		post :create, user: user_attr
 			end
-			it { should redirect_to(root_path) }
+			it { should redirect_to(user_student_root_path) }
 			it { User.count.should eq( @count+1)  }
 		end
 
@@ -26,7 +23,7 @@ describe RegistrationsController do
 			describe "different passwords" do
 				before do
 				  @count = User.count
-				  post :create, user: { email: "user@gmail.com", password: "password", 
+				  post :create, user: { name: "user", email: "user@gmail.com", password: "password", 
 				  	password_confirmation: "passwora" }
 				end
 				it { response.code.should eq("200") }
@@ -36,7 +33,8 @@ describe RegistrationsController do
 			describe "short password" do
 				before do
 				  @count = User.count
-				  post :create, user: { email: "user@gmail.com", password: "pass", password_confirmation: "pass" }
+				  post :create, user: { name: "user", email: "user@gmail.com", password: "pass", 
+				  	password_confirmation: "pass" }
 				end
 				it { response.code.should eq("200") }
 				it { User.count.should be(@count) }
@@ -45,7 +43,7 @@ describe RegistrationsController do
 			describe "long password" do
 				before do
 				  @count = User.count
-				  post :create, user: { email: "user@gmail.com", password: "password"*20, 
+				  post :create, user: { name: "user", email: "user@gmail.com", password: "password"*20, 
 				  	password_confirmation: "password"*20 }
 				end
 				it { response.code.should eq("200") }
@@ -55,7 +53,8 @@ describe RegistrationsController do
 			describe "empty password" do
 				before do
 				  @count = User.count
-				  post :create, user: { email: "user@gmail.com", password: "", password_confirmation: "" }
+				  post :create, user: { name: "user", email: "user@gmail.com", password: "",
+				  	password_confirmation: "" }
 				end
 				it { response.code.should eq("200") }
 				it { User.count.should be(@count) }
@@ -64,7 +63,7 @@ describe RegistrationsController do
 			describe "empty email" do
 				before do
 					@count = User.count
-					user_attr = FactoryGirl.attributes_for(:valid_user, email: "")
+					user_attr = FactoryGirl.attributes_for(:student, email: "")
 	    		post :create, user: user_attr
 				end
 				it { response.code.should eq("200") }
@@ -73,13 +72,33 @@ describe RegistrationsController do
 
 			describe "already existing" do
 				before do
-				  user_attr = FactoryGirl.attributes_for(:valid_user)
+				  user_attr = FactoryGirl.attributes_for(:student)
 	    		post :create, user: user_attr
 	    		@count = User.count
 	    		post :create, user: user_attr
 				end
 				# it { response.code.should eq("200") }
 				it { User.count.should be(@count) }
+			end
+
+			describe "admin should not be registered" do
+				before do
+					@count = User.count
+					user_attr = FactoryGirl.attributes_for(:admin)
+	    		post :create, user: user_attr
+				end
+				it { should redirect_to(user_student_root_path) }
+				it { User.count.should eq( @count+1)  }
+			end
+
+			describe "lecturer should not be registered" do
+				before do
+					@count = User.count
+					user_attr = FactoryGirl.attributes_for(:lecturer)
+	    		post :create, user: user_attr
+				end
+				it { should redirect_to(user_student_root_path) }
+				it { User.count.should eq( @count+1)  }
 			end
 
 		end

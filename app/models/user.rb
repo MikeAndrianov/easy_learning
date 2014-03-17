@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Devise checks presence of email field. We shouldn't do it here one more time. 
   #
-  # validates :name, presence: true
+  validates :name, presence: true
 
   validates_format_of :email,
     :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z]{2,4}$/i, :multiline => true, 
@@ -27,16 +27,12 @@ class User < ActiveRecord::Base
   ROLES = ["Administrator", "Lecturer", "Student"]
 
   def admin?
-    role == "Administrator"
+    type == "Admin"
   end
 
   def lecturer?
-    role == "Lecturer"
+    type == "Lecturer"
   end
-
-  # def student? 
-  #   role == "Student"
-  # end
 
   def student?
     type == "Student"

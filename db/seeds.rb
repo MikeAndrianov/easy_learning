@@ -19,6 +19,6 @@
   end
 end
 # admin create
-User.create(email: 'admin@mail.com',role: 'Administrator',password: '12345678',name: 'admin')
+User.create(email: 'admin@mail.com',type: 'Admin',password: '12345678',name: 'admin')
 # student create
-User.create(email: 'student@mail.com',role: 'Student',password: '12345678',name: 'student')
+User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name: 'student')
