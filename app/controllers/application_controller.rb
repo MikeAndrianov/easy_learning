@@ -77,6 +77,7 @@ class ApplicationController < ActionController::Base
       ]
     else
       [
+        { :name => "Files Sharing", :path => files_sharing_path },
         { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },          
         { :name => "Portfolio", :icon => "glyphicon glyphicon-picture", :path => portfolio_home_index_path },
         { :name => "Services", :icon => "glyphicon glyphicon-briefcase", :path => services_home_index_path },
