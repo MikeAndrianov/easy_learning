@@ -7,9 +7,9 @@ class Event < ActiveRecord::Base
   }
 
   CREATED_BY_FILTER = {
-    "All Events" => "All Events", 
-    "Created By Me" => "Created By Me", 
-    "Created For Me" => "Created For Me"
+    "All Events" => "shared_events", 
+    "Created By Me" => "events_created_by_me", 
+    "Created For Me" => "events_created_for_me"
   }
 
   has_many :participations, :dependent => :destroy

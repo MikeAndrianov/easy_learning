@@ -2,5 +2,10 @@
   <%= link_to "", user_schedule_path(:date => @date.prev_month), :class => "nav prev glyphicon glyphicon-chevron-left"  %>
   <%= @date.strftime("%B %Y") %>   
   <%= link_to "", user_schedule_path(:date => @date.next_month), :class => "nav next glyphicon glyphicon-chevron-right" %>
-  <%= select_tag 'created by', options_for_select(Event::CREATED_BY_FILTER), :class => "right" %>
+
+  <%= form_tag(user_schedule_path, :method => :get, :class => "event_filter") do %>
+    <%= select_tag 'event_filter', options_for_select(Event::CREATED_BY_FILTER, params[:event_filter]), :class => "right", :onchange => "this.form.submit();" %>
+    <%= hidden_field_tag :date, params[:date] %>
+  <% end %>
+
 </h2>

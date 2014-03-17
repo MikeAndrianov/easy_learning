@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     Event.shared_for(self)
   end
 
+  def events_created_for_me
+    events.where('created_by_id != ?', self.id)
+  end
+
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end

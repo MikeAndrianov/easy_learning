@@ -7,7 +7,7 @@ class SchedulesController < ApplicationController
     
     # Optimization needed!
     #
-    @events = @user.shared_events.sort_by{|event| event.starts_at.strftime('%H %M')}
+    @events = @user.send(params[:event_filter] || 'shared_events').sort_by{|event| event.starts_at.strftime('%H %M')}
     # can't write something like @events = @user.shared_events.order(:starts_at)
     # because we should sort by time, not by datetime 
     #
