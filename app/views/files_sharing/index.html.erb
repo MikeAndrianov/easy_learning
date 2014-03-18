@@ -1,6 +1,5 @@
-<% @result.data.items.each do |item| %>
-<%= link_to item.title, item.alternateLink %>
-<% debug(item) %>
+<% @files.each do |file| %>
+	<%= link_to file.name, file.google_id %>
 <% end %>
 <%= form_tag '/files_sharing/upload', { :multipart => true } do %>
     <p>

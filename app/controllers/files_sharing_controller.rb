@@ -8,9 +8,11 @@ SCOPES = 'https://www.googleapis.com/auth/drive.file'
 class FilesSharingController < ApplicationController
   before_filter :google_login, only: [:index, :upload]
   def index
-    @result = @client.execute(api_method: @drive.files.list)
+    @files = GoogleFile.all
   end
 
+# store refresh_token in db later
+#
   def google_login
     oauth_client
     auth_url = @client.auth_code.authorize_url(redirect_uri: REDIRECT_URI, 
@@ -70,8 +72,19 @@ class FilesSharingController < ApplicationController
         api_method: @drive.files.insert,
         body_object: metadata,
         media: file,
-        parameters: {'uploadType' => 'multipart'})
+        parameters: {'uploadType' => 'multipart', convert: true})
+      google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.alternateLink)
+      share_file
     end
     redirect_to files_sharing_path
+  end
+
+  def share_file
+    file_id = @result.data.id
+    permission = {role: 'reader', type: 'anyone'}
+    result = @client.execute(
+      api_method: @drive.permissions.insert,
+      body_object: permission,
+      parameters: {fileId: file_id})
   end
 end
