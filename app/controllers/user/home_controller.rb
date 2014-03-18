@@ -1,7 +1,7 @@
 class User::HomeController < HomeController
   
   def index
-   # redirect_to user_schedule_path
+    # redirect_to account_url if current_user
   end
   
 
