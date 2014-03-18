@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140303225018) do
+ActiveRecord::Schema.define(version: 20140318153214) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -37,6 +36,20 @@ ActiveRecord::Schema.define(version: 20140303225018) do
     t.datetime "updated_at"
   end
 
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.integer  "lecturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses_groups", id: false, force: true do |t|
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,6 +57,12 @@ ActiveRecord::Schema.define(version: 20140303225018) do
     t.text     "description"
     t.datetime "starts_at"
     t.string   "location"
+  end
+
+  create_table "groups", force: true do |t|
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "participations", force: true do |t|
@@ -99,6 +118,7 @@ ActiveRecord::Schema.define(version: 20140303225018) do
     t.integer  "roles_mask"
     t.string   "mobile"
     t.string   "type"
+    t.integer  "group_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

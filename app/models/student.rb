@@ -1,3 +1,5 @@
-class Student < User  
+class Student < User
+
+	belongs_to :group
 
 end
