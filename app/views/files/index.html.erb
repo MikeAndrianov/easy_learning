@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="inner-container">
+  
+    <h1> <%= image_tag "Logo_of_Google_Drive_small.png", :style => "width: 40px; margin-bottom: 10px; margin-right: -5px;" %>  Files: </h1>
+
+    <% if @files %>
+      <table id="file-list" class="span12">
+        <thead>
+          <td> Name </td>
+          <td style="width: 135px;"> Updated at </td>
+        </thead>
+
+        <tbody>
+          <% @files.each do |file| %>
+            <tr>
+              <td> <%= link_to file.name, file.google_id %> </td>
+              <td> <%= file.updated_at.strftime("%H:%M %d %b %Y") %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= clear nil, :height => 70 %>
+    <% end %>
+
+    <%= form_tag upload_files_path, { :multipart => true } do %>
+      <%= file_field_tag 'upload[file]' %>
+      <br>
+      <%= submit_tag "Upload" %>
+    <% end %>
+  </div>
+
+</div>

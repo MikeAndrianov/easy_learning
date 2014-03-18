@@ -5,14 +5,16 @@ CLIENT_SECRET = '8zD4YeNxtJz9uojz_6BFwU1N'
 REDIRECT_URI = 'http://localhost:3000/files_sharing/omniauth_callback'
 SCOPES = 'https://www.googleapis.com/auth/drive.file'
 
-class FilesSharingController < ApplicationController
+class FilesController < ApplicationController
   before_filter :google_login, only: [:index, :upload]
+  before_filter :set_the_header
+
   def index
     @files = GoogleFile.all
   end
 
-# store refresh_token in db later
-#
+  # TODO: store refresh_token in db later
+  #
   def google_login
     oauth_client
     auth_url = @client.auth_code.authorize_url(redirect_uri: REDIRECT_URI, 
@@ -76,7 +78,7 @@ class FilesSharingController < ApplicationController
       google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.alternateLink)
       share_file
     end
-    redirect_to files_sharing_path
+    redirect_to files_path
   end
 
   def share_file
@@ -87,4 +89,11 @@ class FilesSharingController < ApplicationController
       body_object: permission,
       parameters: {fileId: file_id})
   end
+
+  private
+
+  def set_the_header
+    @the_header = :files
+  end
+
 end

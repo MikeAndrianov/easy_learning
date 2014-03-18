@@ -54,6 +54,11 @@ footer{
   position: relative;
 }
 
+.inner-container{
+  padding: 20px;
+  position: relative;
+}
+
 .active-element {
     background: $violet_plum;
     color: white;
@@ -243,4 +248,15 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
     font-size: 20px;
     color: #f0ad4e;
   }
+}
+
+#file-list{
+  font-size: 15px;
+  text-align: left;
+
+  thead{ font-weight: bold; }
+
+  tr{ border-bottom: 1px dotted $light_grey; }
+
+  td{ padding: 10px 5px; }
 }

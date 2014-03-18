@@ -8,9 +8,9 @@ EasyLearning::Application.routes.draw do
  
   root "home#index"
 
-  get "files_sharing" => "files_sharing#index"
-  get "files_sharing/omniauth_callback" => "files_sharing#omniauth_callback"
-  post "files_sharing/upload" => "files_sharing#upload"
+  # get "files_sharing" => "files_sharing#index"
+  # get "files_sharing/omniauth_callback" => "files_sharing#omniauth_callback"
+  # post "files_sharing/upload" => "files_sharing#upload"
 
   resources :home do
     collection do
@@ -23,11 +23,23 @@ EasyLearning::Application.routes.draw do
   
   resources :tests
   resources :events
+  resources :files, :only => [:index]  do
+    collection do
+      get "omniauth_callback"
+      post "upload"
+    end
+  end
    
   namespace :user do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
+    resources :files, :only => [:index] do
+      collection do
+        get "omniauth_callback"
+        post "upload"
+      end
+    end
   end
   
   namespace :user, path: "", only: [] do
@@ -36,6 +48,13 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
+      resources :files, :only => [:index] do
+        collection do
+          get "omniauth_callback"
+          post "upload"
+        end
+      end
+      
     end
 
     namespace :lecturer do
@@ -43,6 +62,13 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
+      resources :files, :only => [:index] do
+        collection do
+          get "omniauth_callback"
+          post "upload"
+        end
+      end
+
     end
 
     namespace :student do
@@ -50,6 +76,13 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
+      resources :files, :only => [:index] do
+        collection do
+          get "omniauth_callback"
+          post "upload"
+        end
+      end
+
     end
   end
 

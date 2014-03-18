@@ -56,6 +56,7 @@ class ApplicationController < ActionController::Base
     if admin?
       [
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
+        { :name => "Files", :icon => "glyphicon glyphicon-cloud-upload", :path => user_admin_files_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_admin_schedule_path },
         { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => '#'},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_admin_settings_path },
@@ -77,7 +78,6 @@ class ApplicationController < ActionController::Base
       ]
     else
       [
-        { :name => "Files Sharing", :path => files_sharing_path },
         { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },          
         { :name => "Portfolio", :icon => "glyphicon glyphicon-picture", :path => portfolio_home_index_path },
         { :name => "Services", :icon => "glyphicon glyphicon-briefcase", :path => services_home_index_path },
