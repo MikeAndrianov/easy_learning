@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   before_filter :set_user
 
   def show
-    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @date = params[:date].blank? ? Date.today : Date.parse(params[:date])
     
     # Optimization needed!
     #

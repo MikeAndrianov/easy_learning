@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+  end
 
   def admin?
     type == "Admin"
