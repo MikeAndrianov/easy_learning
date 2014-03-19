@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     # only Students can register from home page
     #
-    build_resource(sign_up_params.merge(:role => "Student"))
+    build_resource(sign_up_params.merge(:type => "Student"))
 
     if resource.save
       yield resource if block_given?
@@ -25,8 +25,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
   private
+
+  def after_sign_up_path_for(resource)
+    account_url
+  end
 
   def set_the_header
     @the_header = :users

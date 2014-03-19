@@ -1,4 +1,4 @@
 class Question < ActiveRecord::Base
-	belongs_to :test
+	belongs_to :control
 	has_many :answers,:dependent => :destroy
 end

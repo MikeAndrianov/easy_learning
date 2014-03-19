@@ -8,9 +8,9 @@
 
 # here we create 2 stub tests 
 2.times do |i|
-  Test.create(name: "Test #{i+1}").tap do |test|
+  Control.create(name: "Test #{i+1}").tap do |control|
   	3.times do |j|
-  		test.questions.create(content:"Question #{j+1}").tap do |question|
+  		control.questions.create(content:"Question #{j+1}").tap do |question|
   			3.times do |k|
   				question.answers.create(content: "Answer #{k+1+j*3}")
   			end
@@ -19,6 +19,6 @@
   end
 end
 # admin create
-User.create(email: 'admin@mail.com',role: 'Administrator',password: '12345678',name: 'admin')
+User.create(email: 'admin@mail.com',type: 'Admin',password: '12345678',name: 'admin')
 # student create
-User.create(email: 'student@mail.com',role: 'Student',password: '12345678',name: 'student')
+User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name: 'student')

@@ -22,11 +22,15 @@ class SessionsController < Devise::SessionsController
       format.any(*navigational_formats) { redirect_to redirect_path }
     end
   end
-  
+
   private
 
-  def set_the_header
-    @the_header = :users
-  end
+    def set_the_header
+      @the_header = :users
+    end
+
+    def after_sign_in_path_for(resource)
+      account_url
+    end
 
 end

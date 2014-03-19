@@ -1,12 +1,16 @@
 EasyLearning::Application.routes.draw do
 
-  get "tests/index"
-  mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
   
   get "home/index"
-  devise_for :users, controllers: {sessions: "sessions", registrations: "registrations"}
 
+  devise_for :users, controllers: { sessions: "sessions", registrations: "registrations" }
+ 
   root "home#index"
+
+  get "files_sharing" => "files_sharing#index"
+  get "files_sharing/omniauth_callback" => "files_sharing#omniauth_callback"
+  post "files_sharing/upload" => "files_sharing#upload"
 
   resources :home do
     collection do
@@ -25,11 +29,33 @@ EasyLearning::Application.routes.draw do
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
   end
+  
+  namespace :user, path: "", only: [] do
+    namespace :admin do
+      root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
+    end
+
+    namespace :lecturer do
+      root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
+    end
+
+    namespace :student do
+      root "home#index"
+      resources :home
+      resource :settings, :only => [:show, :update]
+      resource :schedule, :only => [:show]
+    end
+  end
 
   get '/test/edit/getTest' => 'tests#getTest'
   post '/test/edit/question/add' => 'tests#addQuestion'
 
-  
 
 
   

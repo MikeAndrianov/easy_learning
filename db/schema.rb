@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140316144530) do
     t.datetime "updated_at"
   end
 
+  create_table "controls", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -52,12 +58,12 @@ ActiveRecord::Schema.define(version: 20140316144530) do
 
   create_table "questions", force: true do |t|
     t.string   "content"
-    t.integer  "test_id"
+    t.integer  "control_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
+  add_index "questions", ["control_id"], name: "index_questions_on_control_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -73,12 +79,6 @@ ActiveRecord::Schema.define(version: 20140316144530) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "roles", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tests", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140316144530) do
     t.string   "role"
     t.integer  "roles_mask"
     t.string   "mobile"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

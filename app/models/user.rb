@@ -37,6 +37,21 @@ class User < ActiveRecord::Base
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+
+  def admin?
+    type == "Admin"
+  end
+
+  def lecturer?
+    type == "Lecturer"
+  end
+
+  def student?
+    type == "Student"
+  end
+
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
 
   def roles
@@ -45,18 +60,6 @@ class User < ActiveRecord::Base
 
   def role?(role)
     roles.include? role.to_s
-  end
-
-  def admin?
-    role == "Administrator"
-  end
-
-  def lecturer?
-    role == "Lecturer"
-  end
-
-  def student? 
-    role == "Student"
   end
 
   #

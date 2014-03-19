@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
+gem 'google-api-client'
+gem 'omniauth-google-oauth2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -47,6 +48,15 @@ gem 'rails_admin'
 group :development, :test do
   gem 'thin'
   gem 'mysql2'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-spork'
+end
+
+group :test do
+	gem 'spork', '1.0.0rc3'
+	gem 'factory_girl_rails'
 end
 
 gem 'dynamic_form'
