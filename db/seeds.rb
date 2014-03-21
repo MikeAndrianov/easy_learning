@@ -22,3 +22,22 @@ end
 User.create(email: 'admin@mail.com',type: 'Admin',password: '12345678',name: 'admin')
 # student create
 User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name: 'student')
+
+Group.create(number: 1)
+Group.create(number: 2)
+20.times do
+  Student.create(email: Faker::Internet.free_email, name: Faker::Name.name, password: 'password', 
+    group: Group.find_by(number: 1))
+  Student.create(email: Faker::Internet.free_email, name: Faker::Name.name, password: 'password', 
+    group: Group.find_by(number: 2))
+end
+lecturer=[]
+2.times do |i|
+  lecturer[i]=Lecturer.create(email: Faker::Internet.free_email, name: Faker::Name.name, password: 'password')
+end
+5.times do
+  Group.find_by(number: 1).courses << (Course.create(name: Faker::Lorem.word, 
+    lecturer: lecturer[rand(2)]))
+  Group.find_by(number: 2).courses << (Course.create(name: Faker::Lorem.word,
+    lecturer: lecturer[rand(2)]))
+end

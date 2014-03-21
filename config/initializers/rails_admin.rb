@@ -1,5 +1,8 @@
 # RailsAdmin config file. Generated on November 19, 2013 09:08
 # See github.com/sferik/rails_admin for more informations
+Kaminari.configure do |config|
+  config.page_method_name = :per_page_kaminari
+end
 
 RailsAdmin.config do |config|
 

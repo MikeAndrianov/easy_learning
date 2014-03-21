@@ -1,0 +1,17 @@
+<%= "group ##{@group.number}" %>
+<table class="table table-bordered">
+	<% @courses.each do |course| %>
+		<tr>
+			<td> <%= course.name %> </td>
+			<td>
+				<% if @group.courses.include? course %>
+					<%= link_to 'Delete', { action: 'update', id: @group.id, course_id: course.id}, 
+						class: 'light-button btn-primary active course-btn', remote: true, method: :put %>
+				<% else %>
+					<%= link_to 'Add course', { action: 'update', id: @group.id, course_id: course.id}, 
+						class: 'light-button btn-primary course-btn', remote: true, method: :put %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>

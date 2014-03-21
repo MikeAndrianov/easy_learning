@@ -19,6 +19,8 @@ EasyLearning::Application.routes.draw do
   
   resources :tests
   resources :events
+  resources :users, only: [:index, :show]
+  resources :groups, only: [:index, :show, :update]
    
   namespace :user do
     resources :home

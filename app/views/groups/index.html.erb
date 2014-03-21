@@ -1,0 +1,5 @@
+<% @groups.each do |group| %>
+	<%= link_to group.number, group_path(group) %>
+<% end %>
+
+<%= will_paginate @groups %>
