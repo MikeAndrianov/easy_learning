@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318113026) do
+ActiveRecord::Schema.define(version: 20140321090122) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140318113026) do
     t.string   "google_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uploaded_by"
   end
 
   create_table "participations", force: true do |t|

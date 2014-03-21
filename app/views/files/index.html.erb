@@ -7,6 +7,7 @@
       <table id="file-list" class="span12">
         <thead>
           <td> Name </td>
+          <td> Uploaded by </td>
           <td style="width: 135px;"> Updated at </td>
         </thead>
 
@@ -14,6 +15,7 @@
           <% @files.each do |file| %>
             <tr>
               <td> <%= link_to file.name, file.google_id %> </td>
+              <td> <%= file.uploaded_by %> </td>
               <td> <%= file.updated_at.strftime("%H:%M %d %b %Y") %> </td>
             </tr>
           <% end %>

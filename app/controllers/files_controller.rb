@@ -2,7 +2,7 @@ require 'google/api_client'
 
 CLIENT_ID = '674123074556-lpvjcp3u75tqb3javidi8sbad2rj3i0o'
 CLIENT_SECRET = '8zD4YeNxtJz9uojz_6BFwU1N'
-REDIRECT_URI = 'http://localhost:3000/files_sharing/omniauth_callback'
+REDIRECT_URI = 'http://localhost:3000/files/omniauth_callback'
 SCOPES = 'https://www.googleapis.com/auth/drive.file'
 
 class FilesController < ApplicationController
@@ -13,27 +13,23 @@ class FilesController < ApplicationController
     @files = GoogleFile.all
   end
 
-  # TODO: store refresh_token in db later
-  #
   def google_login
     oauth_client
     auth_url = @client.auth_code.authorize_url(redirect_uri: REDIRECT_URI, 
       scope: SCOPES, access_type: 'offline')
-    unless session[:refresh_token]
-      redirect_to auth_url
-    end
-    if session[:refresh_token]
+    if current_user.google_refresh_token
       auth_token = OAuth2::AccessToken.from_hash(@client,
-        {:refresh_token => session[:refresh_token], :expires_at => session[:expires_at]})
+        {:refresh_token => current_user.google_refresh_token, :expires_at => current_user.google_expires_at})
       begin
         auth_token = auth_token.refresh!
       rescue
-        session[:refresh_token] = nil
-        session[:expires_at] = nil
+        set_credentials(nil, nil)
         redirect_to auth_url
       end
       token = auth_token.token
       google_client(token)
+    else
+      redirect_to auth_url
     end
   end
 
@@ -42,9 +38,8 @@ class FilesController < ApplicationController
       oauth_client
       auth_token = @client.auth_code.get_token(
         params[:code], :redirect_uri => REDIRECT_URI)
-      session[:refresh_token]=auth_token.refresh_token
-      session[:expires_at]=auth_token.expires_at
-      redirect_to files_sharing_path
+      set_credentials(auth_token.refresh_token, auth_token.expires_at)
+      redirect_to files_path
     end
   end
 
@@ -75,7 +70,8 @@ class FilesController < ApplicationController
         body_object: metadata,
         media: file,
         parameters: {'uploadType' => 'multipart', convert: true})
-      google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.alternateLink)
+      google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.alternateLink, 
+        uploaded_by: current_user.name)
       share_file
     end
     redirect_to files_path
@@ -88,6 +84,11 @@ class FilesController < ApplicationController
       api_method: @drive.permissions.insert,
       body_object: permission,
       parameters: {fileId: file_id})
+  end
+
+  def set_credentials(token, expires)
+    current_user.update_attributes(google_refresh_token: token)
+    current_user.update_attributes(google_expires_at: expires)
   end
 
   private
