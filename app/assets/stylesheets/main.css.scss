@@ -54,6 +54,11 @@ footer{
   position: relative;
 }
 
+.inner-container{
+  padding: 20px;
+  position: relative;
+}
+
 input[type='checkbox']{
   height: auto !important;
   width: auto !important;
@@ -281,10 +286,27 @@ li [class^="glyphicon-"], li [class*=" glyphicon-"]{
   }
 }
 
+#file-list{
+  font-size: 15px;
+  text-align: left;
+
+  thead{ font-weight: bold; }
+
+  tr{ border-bottom: 1px dotted $light_grey; }
+
+  td{ padding: 10px 5px; }
+}
+
 .datepicker{
   .datepicker-days{
     .current-date{
       border: 1px solid $violet_plum;
     }
   }
+}
+
+.google-drive-logo{
+  width: 40px; 
+  margin-bottom: 10px; 
+  margin-right: -5px
 }

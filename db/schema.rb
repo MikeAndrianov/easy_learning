@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316144530) do
+ActiveRecord::Schema.define(version: 20140321090122) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20140316144530) do
     t.string   "period"
     t.datetime "ends_at"
     t.integer  "created_by_id", default: 1
+  end
+
+  create_table "google_files", force: true do |t|
+    t.string   "name"
+    t.string   "google_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "uploaded_by"
   end
 
   create_table "participations", force: true do |t|
@@ -102,6 +110,8 @@ ActiveRecord::Schema.define(version: 20140316144530) do
     t.integer  "roles_mask"
     t.string   "mobile"
     t.string   "type"
+    t.string   "google_refresh_token"
+    t.string   "google_expires_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
