@@ -50,4 +50,8 @@ module SchedulesHelper
     end
   end
 
+  # def am_pm_time_list
+  #   (0..(24*2-1)).map{|h| Time.parse("#{h/2}:#{(h%2)*30}")}.inject({""=>""}){|memo, t| memo[t.strftime('%l:%M %p')] = t.strftime('%R'); memo; }
+  # end
+
 end

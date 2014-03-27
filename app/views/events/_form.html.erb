@@ -10,13 +10,29 @@
       <%= f.label :description %>
       <%= f.text_area :description %>
 
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+
       <div class="date_select">
         <%= f.label :starts_at %>
         <%= f.datetime_select :starts_at, :default => { :hour => 2.hours.from_now.hour, :minute => 0 }, :order => [:day, :month, :year] %>
+        <%#= f.text_field :starts_at, :value => (f.object.starts_at.strftime('%d-%m-%Y') if f.object.starts_at), :class => "pick_date" %> 
+        <!-- <span class="inline-text"> at </span> -->
+        <%#= f.time_select :starts_at %>
       </div>
 
-      <%= f.label :location %>
-      <%= f.text_field :location %>
+      <div id="is_recurrent">
+        <%= f.check_box :is_recurrent, :class => "left" %>
+        <%= f.label :is_recurrent, "Recurrent" %>
+      </div>
+
+      <div class="date_select <%= 'hidden' unless @event.is_recurrent %>" id="for_recurring_event">
+        <%= f.label :period %>
+        <%= f.select :period, options_for_select(Event::PERIOD, @event.period || "week") %>
+
+        <%= f.label :ends_at %>
+        <%= f.date_select :ends_at, :default => { :day => 1.days.from_now.day, :minute => 0 }, :order => [:day, :month, :year] %>
+      </div>
 
       <%= f.label :user_ids, "Participants" %>
       <%= f.collection_select :user_ids, User.all(:conditions => ["id != ?", current_user.id], :order => :name), 
@@ -36,7 +52,34 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-    $('#event_user_ids').chosen()
-  });
+  function mark_current_date(){
+    var d = new Date();
+    var today = d.getDate();
+
+    $(".datepicker-days .table-condensed td").each(function() {
+      if($(this).html() == today && $(this).not( $(this).hasClass("old") || $(this).hasClass("new") ) ){
+        $(this).addClass("current-date")
+      }
+    });
+  }
+
+
+  $('.pick_date').datepicker({
+    weekStart: 1,
+    format: 'dd-mm-yyyy'
+  }).on('changeDate', function(){
+    $(".datepicker").hide()
+  }).on('click', function(){ mark_current_date() });
+
+  
+
+  // $(document).ready(function(){
+  //   $('#event_user_ids').chosen()  
+  // });
+
+
+  $("#event_is_recurrent").on('change', function(){
+    $("#for_recurring_event").toggleClass("hidden")
+  }); 
+
 </script>

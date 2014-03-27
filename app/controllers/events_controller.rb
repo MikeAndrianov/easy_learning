@@ -4,9 +4,6 @@ class EventsController < ApplicationController
   before_filter :set_event, :only => [:show, :edit, :update, :destroy]
 
 
-  #TODO: add destroy action! Also add dependent: :destroy Enent.rb has_many :participations, dependent: :destroy
-  #
-
   def index
     @events = @user.events
   end
@@ -14,7 +11,7 @@ class EventsController < ApplicationController
   def show; end
 
   def new
-    @event = Event.new(:starts_at => params[:day])
+    @event = @user.events.new(:starts_at => params[:day])
     respond_to do |format|
       format.js { render :action => 'edit'}
     end
@@ -28,7 +25,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = @user.events.new(event_params)
     
     if @event.save
       flash[:success] = '**Event** was **successfully saved**.'
@@ -71,8 +68,12 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params[:event][:user_ids].reject!{ |id| id.empty? }
+    # params[:event][:starts_at] = Date.parse(params[:event][:starts_at]).to_s
+    # params[:event][:ends_at] = Date.parse(params[:event][:ends_at]).to_s if params[:event][:ends_at]
+    
+    params[:event][:user_ids].reject!{ |id| id.empty? } << current_user.id
     params[:event].permit!
+    params[:event].merge(:created_by_id => current_user.id)
   end
 
 end

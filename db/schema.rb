@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 20140321090122) do
     t.text     "description"
     t.datetime "starts_at"
     t.string   "location"
+    t.boolean  "is_recurrent"
+    t.string   "period"
+    t.datetime "ends_at"
+    t.integer  "created_by_id", default: 1
   end
 
   create_table "google_files", force: true do |t|
