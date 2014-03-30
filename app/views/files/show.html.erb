@@ -1,2 +1,7 @@
-<iframe src="https://docs.google.com/gview?url=<%= @file.google_id %>&embedded=true" width=100% height=700>
-</iframe>
+<% if @result.data.mimeType == 'application/pdf' %>
+	<iframe src="http://docs.google.com/gview?url=<%= @result.data.webContentLink %>&embedded=true" width=100% height=700></iframe>
+<% elsif @result.data.mimeType == 'application/vnd.google-apps.document' %>
+	<iframe src="<%= @result.data.embedLink %>" width=100% height=700></iframe>
+<% elsif @result.data.mimeType == 'video/mp4' %>
+  <iframe src="https://docs.google.com/file/d/<%= @result.data.id %>/preview" width="640" height="385"></iframe>
+<% end %>

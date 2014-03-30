@@ -15,7 +15,10 @@ class FilesController < ApplicationController
   end
 
   def show
-    @file = GoogleFile.find(params[:id])
+    file = GoogleFile.find(params[:id])
+    @result = @client.execute(
+      api_method: @drive.files.get,
+      parameters: { fileId: file.google_id })
   end
 
   def google_login
@@ -75,7 +78,7 @@ class FilesController < ApplicationController
         body_object: metadata,
         media: file,
         parameters: {'uploadType' => 'multipart', convert: true})
-      google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.webContentLink, 
+      google_file = GoogleFile.create(name: data.original_filename, google_id: @result.data.id, 
         uploaded_by: current_user.name)
       share_file
     end
