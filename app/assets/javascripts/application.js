@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree
 
 //= require angular.min.js
@@ -21,3 +20,4 @@
 //= require_directory ./andia
 //= require_directory ./prettyPhoto
 //= require chosen-jquery
+//= require turbolinks
