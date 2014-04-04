@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321090122) do
+ActiveRecord::Schema.define(version: 20140404175440) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20140321090122) do
     t.string   "period"
     t.datetime "ends_at"
     t.integer  "created_by_id", default: 1
+  end
+
+  create_table "faculties", force: true do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "google_files", force: true do |t|
