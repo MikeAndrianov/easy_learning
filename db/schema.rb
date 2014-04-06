@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318153214) do
+ActiveRecord::Schema.define(version: 20140401144633) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140318153214) do
   end
 
   create_table "groups", force: true do |t|
-    t.integer  "number"
+    t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,18 @@
+<%= @course.name %><br>
+<table class="table table-bordered">
+	<thead><td> Group </td><td> Subscription </td></thead>
+	<% @groups.each do |group| %>
+		<tr>
+			<td> <%= link_to group.number, group_path(group) %> </td>
+			<td>
+				<% if group.courses.include? @course %>
+					<%= link_to 'Delete', { action: 'update', id: @course.id, group_id: group.id}, 
+						class: 'light-button btn-primary active course-btn', remote: true, method: :put %>
+				<% else %>
+					<%= link_to 'Subscribe', { action: 'update', id: @course.id, group_id: group.id}, 
+						class: 'light-button btn-primary course-btn', remote: true, method: :put %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>

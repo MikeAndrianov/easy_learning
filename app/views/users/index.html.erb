@@ -1,5 +1,17 @@
-<% @students.each do |student| %>
-	<%= link_to student.name, user_path(student) %>
-<% end %>
-
+<table class="table table-bordered">
+  <thead>
+    <td> Name </td>
+    <td> Group </td>
+  </thead>
+  <tbody>
+    <% @students.in_groups_of(4, false) do |students| %>
+      <tr>
+        <% students.each do |student| %>
+        <td> <%= link_to student.name, user_path(student) %> </td>
+        <td> <%= link_to student.group.number, group_path(student.group) if student.group %> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= will_paginate @students %>

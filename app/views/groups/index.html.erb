@@ -1,3 +1,15 @@
+<%= link_to 'Create Group', '#', class: 'btn btn-primary', id: 'create-group-btn', remote: true %>
+<div class="create-group-form hidden">
+	<%= form_for Group.new do |f| %>
+		<%= f.label :number %>
+		<%= f.text_field :number %><br>
+		Available Students <br>
+		<% @students.each do |student| %>
+			<label><%= check_box_tag "student_ids[]", student.id %><%= student.name %></label>
+		<% end %>
+		<%= f.submit "Create Group" %>
+	<% end %>
+</div>
 <% @groups.each do |group| %>
 	<%= link_to group.number, group_path(group) %>
 <% end %>
