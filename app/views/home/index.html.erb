@@ -1,8 +1,11 @@
 <div class="container contact-us">
 
     <%= render :partial => "home/slider" %>
-    
-    <%= render :partial => "home/sign_up_form" %>
+    <% if student? %> 
+    	<%= render :partial => "home/event_list" %>
+    <% else %>
+   		<%= render :partial => "home/sign_up_form" %>
+    <% end %>
 
 </div>
 
