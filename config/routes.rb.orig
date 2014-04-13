@@ -1,6 +1,6 @@
 EasyLearning::Application.routes.draw do
 
-  get "tests/index"
+  get "surveys/index"
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
@@ -17,7 +17,7 @@ EasyLearning::Application.routes.draw do
     end
   end
   
-  resources :tests
+  resources :surveys
    
   namespace :user do
     resources :home
@@ -32,7 +32,7 @@ EasyLearning::Application.routes.draw do
 
   
 =======
-  get 'test_edit' => 'test_edit#index'
+  get 'survey_edit' => 'survey_edit#index'
 
 >>>>>>> Stashed changes
   # The priority is based upon order of creation: first created -> highest priority.

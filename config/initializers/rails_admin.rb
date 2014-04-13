@@ -39,7 +39,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  # config.model 'Test' do
+  # config.model 'Survey' do
   # end
 
   # If you want to track changes on your models:

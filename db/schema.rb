@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220205805) do
+ActiveRecord::Schema.define(version: 20140413144703) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140220205805) do
     t.datetime "updated_at"
   end
 
+  create_table "controls", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,6 +43,14 @@ ActiveRecord::Schema.define(version: 20140220205805) do
     t.text     "description"
     t.datetime "starts_at"
     t.string   "location"
+  end
+
+  create_table "google_files", force: true do |t|
+    t.string   "name"
+    t.string   "google_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "uploaded_by"
   end
 
   create_table "participations", force: true do |t|
@@ -48,12 +62,12 @@ ActiveRecord::Schema.define(version: 20140220205805) do
 
   create_table "questions", force: true do |t|
     t.string   "content"
-    t.integer  "test_id"
+    t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -74,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140220205805) do
     t.datetime "updated_at"
   end
 
-  create_table "tests", force: true do |t|
+  create_table "surveys", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

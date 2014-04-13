@@ -1,31 +1,31 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-@testEditApp = angular.module("testEditApp", ['ng-rails-csrf'])
+@surveyEditApp = angular.module("surveyEditApp", ['ng-rails-csrf'])
 
 $(document).on('ready page:load', ->
-  angular.bootstrap(document, ['testEditApp'])
+  angular.bootstrap(document, ['surveyEditApp'])
   )
 
 
-testEditApp.controller('TestCtrl', ($scope,$http)->
-  $http.get('/test/edit/getTest')
+surveyEditApp.controller('SurveyCtrl', ($scope,$http)->
+  $http.get('/survey/edit/getSurvey')
   .then( (res)-> 
-    $scope.test = res.data
+    $scope.survey = res.data
     )
 
   $scope.addQuestion = ->
     newQuestion =
       content: $scope.formQuestionText
-      test_id: $scope.test.id
+      survey_id: $scope.survey.id
 
     $http(
       method: "POST"
-      url: "/test/edit/question/add"
+      url: "/survey/edit/question/add"
       headers: "Content-Type": "application/json"
       data: newQuestion
       ).success (data) ->
-        $scope.test.questions.unshift(
+        $scope.survey.questions.unshift(
           id: data
           content: $scope.formQuestionText
           answers: []
@@ -38,11 +38,11 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
   $scope.deleteQuestion = (question)  ->
     $http(
       method: 'POST'
-      url: '/test/edit/question/delete'
+      url: '/survey/edit/question/delete'
       headers: 'Content-Type': 'application/json'
       data: question.id
     ).success((data)->
-      $scope.test.questions.splice($scope.test.questions.indexOf(question), 1)
+      $scope.survey.questions.splice($scope.survey.questions.indexOf(question), 1)
     )
 
   $scope.addAnswer = (question, formAnswerText) ->
@@ -53,7 +53,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
 
     $http(
       method: "POST"
-      url: "/test/edit/answer/add"
+      url: "/survey/edit/answer/add"
       headers: "Content-Type": "application/json"
       data: newAnswer
     ).success (data) ->
@@ -71,7 +71,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
   $scope.deleteAnswer = (question, answer) ->
     $http(
       method: "POST"
-      url: "/test/edit/answer/delete"
+      url: "/survey/edit/answer/delete"
       headers: "Content-Type": "application/json"
       data: answer.id
     ).success (data) ->
@@ -83,7 +83,7 @@ testEditApp.controller('TestCtrl', ($scope,$http)->
   $scope.triggerIsRight = (answer) ->
     $http(
       method: "POST"
-      url: "/test/edit/answer/triggerIsRight"
+      url: "/survey/edit/answer/triggerIsRight"
       headers: "Content-Type": "application/json"
       data: answer.id
     ).success (data) ->

@@ -1,33 +1,33 @@
-class TestsController < ApplicationController
+class SurveysController < ApplicationController
   # I've added create to except because otherwise I get ForbiddenAttributesError on create action
   # maybe we should use workaround from here https://github.com/ryanb/cancan/issues/835
   # this is temp stub, and should be fixed!!!
   load_and_authorize_resource except: [:create]
 
   def index
-  	@tests=Test.all
+  	@surveys=Survey.all
   end
 
   def create
-    @test = Test.new(name: params[:test][:name]) 
-    @test.save    
-    redirect_to tests_path
+    @survey = Survey.new(name: params[:survey][:name])
+    @survey.save
+    redirect_to surveys_path
   end  
 
   def destroy    
-    @test = Test.find(params[:id])
-    @test.destroy
-    redirect_to tests_path
+    @survey = Survey.find(params[:id])
+    @survey.destroy
+    redirect_to surveys_path
   end
 
   def edit
     #rethrow params[:id]
-    session[:test_edit_id]=params[:id]
+    session[:survey_edit_id]=params[:id]
   end
 
-  def getTest
-    test=Test.find(session[:test_edit_id])
-    render json: test.as_json(
+  def getSurvey
+    survey=Survey.find(session[:survey_edit_id])
+    render json: survey.as_json(
       include: {questions:{
         include: :answers
       }},except: [:created_at,:updated_at])
@@ -36,7 +36,7 @@ class TestsController < ApplicationController
   respond_to :json
 
   def addQuestion
-    @question=Question.create!(content:params[:content],test_id:params[:test_id])
+    @question=Question.create!(content:params[:content],survey_id:params[:survey_id])
     respond_to do |format|
       format.json { render json: @question.id }
     end

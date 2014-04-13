@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# here we create 2 stub tests 
+# here we create 2 stub surveys
 2.times do |i|
-  Test.create(name: "Test #{i+1}").tap do |test|
+  Survey.create(name: "Survey #{i+1}").tap do |survey|
   	3.times do |j|
-  		test.questions.create(content:"Question #{j+1}").tap do |question|
+  		survey.questions.create(content:"Question #{j+1}").tap do |question|
   			3.times do |k|
   				question.answers.create(content: "Answer #{k+1+j*3}")
   			end

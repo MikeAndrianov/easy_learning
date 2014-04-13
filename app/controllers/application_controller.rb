@@ -31,21 +31,21 @@ class ApplicationController < ActionController::Base
       [
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif current_user && current_user.lecturer?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif current_user && current_user.student?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_schedule_path },
-        { :name => "Tests", :icon => "glyphicon glyphicon-check", :path => tests_path},
+        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]

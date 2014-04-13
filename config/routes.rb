@@ -1,6 +1,6 @@
 EasyLearning::Application.routes.draw do
 
-  get "tests/index"
+  get "surveys/index"
   mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
   
   get "home/index"
@@ -17,7 +17,7 @@ EasyLearning::Application.routes.draw do
     end
   end
   
-  resources :tests
+  resources :surveys
   resources :events
   
    
@@ -27,12 +27,12 @@ EasyLearning::Application.routes.draw do
     resource :schedule, :only => [:show]
   end
 
-  get '/test/edit/getTest' => 'tests#getTest'
-  post '/test/edit/question/add' => 'tests#addQuestion'
-  post '/test/edit/question/delete' => 'tests#deleteQuestion'
-  post '/test/edit/answer/add' => 'tests#addAnswer'
-  post '/test/edit/answer/delete' => 'tests#deleteAnswer'
-  post '/test/edit/answer/triggerIsRight' => 'tests#triggerAnswer'
+  get '/survey/edit/getSurvey' => 'surveys#getSurvey'
+  post '/survey/edit/question/add' => 'surveys#addQuestion'
+  post '/survey/edit/question/delete' => 'surveys#deleteQuestion'
+  post '/survey/edit/answer/add' => 'surveys#addAnswer'
+  post '/survey/edit/answer/delete' => 'surveys#deleteAnswer'
+  post '/survey/edit/answer/triggerIsRight' => 'surveys#triggerAnswer'
 
   
 
