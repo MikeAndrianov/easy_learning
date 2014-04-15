@@ -1,13 +1,21 @@
 EasyLearning::Application.routes.draw do
 
+<<<<<<< HEAD
   mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
+=======
   get "surveys/index"
+  mount RailsAdmin::Engine => '/user/admin', :as => 'rails_admin'
+>>>>>>> test_edit
+  
   get "home/index"
-
 
   devise_for :users, controllers: { sessions: "sessions", registrations: "registrations" }
  
   root "home#index"
+
+  # get "files_sharing" => "files_sharing#index"
+  # get "files_sharing/omniauth_callback" => "files_sharing#omniauth_callback"
+  # post "files_sharing/upload" => "files_sharing#upload"
 
   resources :home do
     collection do
@@ -19,19 +27,17 @@ EasyLearning::Application.routes.draw do
   end
   
   resources :surveys
-  get '/survey/edit/getSurvey' => 'surveys#getSurvey'
-  post '/survey/edit/question/add' => 'surveys#addQuestion'
-  post '/survey/edit/question/delete' => 'surveys#deleteQuestion'
-  post '/survey/edit/answer/add' => 'surveys#addAnswer'
-  post '/survey/edit/answer/delete' => 'surveys#deleteAnswer'
-  post '/survey/edit/answer/triggerIsRight' => 'surveys#triggerAnswer'
   resources :events
+<<<<<<< HEAD
   resources :files, :only => [:index]  do
     collection do
       get "omniauth_callback"
       post "upload"
     end
   end
+=======
+  
+>>>>>>> test_edit
    
   namespace :user do
     resources :home
@@ -89,8 +95,13 @@ EasyLearning::Application.routes.draw do
     end
   end
 
+  get '/survey/edit/getSurvey' => 'surveys#getSurvey'
+  post '/survey/edit/question/add' => 'surveys#addQuestion'
+  post '/survey/edit/question/delete' => 'surveys#deleteQuestion'
+  post '/survey/edit/answer/add' => 'surveys#addAnswer'
+  post '/survey/edit/answer/delete' => 'surveys#deleteAnswer'
+  post '/survey/edit/answer/triggerIsRight' => 'surveys#triggerAnswer'
 
-  
 
 
   

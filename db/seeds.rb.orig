@@ -8,9 +8,15 @@
 
 # here we create 2 stub surveys
 2.times do |i|
+<<<<<<< HEAD
+  Control.create(name: "Test #{i+1}").tap do |control|
+  	3.times do |j|
+  		control.questions.create(content:"Question #{j+1}").tap do |question|
+=======
   Survey.create(name: "Survey #{i+1}").tap do |survey|
   	3.times do |j|
   		survey.questions.create(content:"Question #{j+1}").tap do |question|
+>>>>>>> test_edit
   			3.times do |k|
   				question.answers.create(content: "Answer #{k+1+j*3}")
   			end

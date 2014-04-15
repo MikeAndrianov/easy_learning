@@ -1,4 +1,8 @@
 class Question < ActiveRecord::Base
+<<<<<<< HEAD
+	belongs_to :control
+=======
 	belongs_to :survey
+>>>>>>> test_edit
 	has_many :answers,:dependent => :destroy
 end

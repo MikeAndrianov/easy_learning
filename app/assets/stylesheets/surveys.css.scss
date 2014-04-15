@@ -1,0 +1,44 @@
+// Place all the styles related to the tests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#addQuestion{
+  margin-bottom: 15px;
+  width: 150px;
+}
+#addAnswer{
+  margin-bottom: 24px;
+  width: 140px;
+}
+.content{
+  margin-bottom: 120px;  
+}
+form[name="questionForm"]{
+	text-align: center;
+	display: inline-block;
+}
+textarea[name="questionText"]{
+	width: 600px;
+	display: block;
+}
+button#addQuestion{
+	vertical-align:top;
+	display: block;
+	float: right;
+}
+#surveyContainer{
+  word-break: break-all;
+}
+form[name="answerForm"]{
+  text-align: center;
+  display: inline-block;
+}
+textarea[name="answerText"]{
+  width: 600px;
+  display: block;
+}
+button#addAnswer{
+  vertical-align:top;
+  display: block;
+  float: right;
+}

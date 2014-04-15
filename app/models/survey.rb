@@ -1,3 +1,3 @@
-class Control < ActiveRecord::Base
+class Survey < ActiveRecord::Base
 	has_many :questions,:dependent => :destroy
 end
