@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require home
 //= require angular.min.js
 //= require ng-rails-csrf
 //= require_directory ./bootstrap
