@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413144703) do
+ActiveRecord::Schema.define(version: 20140425202429) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -86,11 +86,20 @@ ActiveRecord::Schema.define(version: 20140413144703) do
     t.datetime "updated_at"
   end
 
-  create_table "surveys", force: true do |t|
+  create_table "subjects", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "surveys", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "subject_id"
+  end
+
+  add_index "surveys", ["subject_id"], name: "index_surveys_on_subject_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

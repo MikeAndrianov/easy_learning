@@ -1,14 +1,16 @@
 <h1>survey list</h1>
 
 <div class="container" >
-  <%= form_for :survey, :url => surveys_path do |f| %>
-  <p>
-    <%= f.text_field :name %>
-  </p>  
-  <span>
-    <%= f.submit "create new" %>
-  </span>
-  <% end %>      
+  <% if can? :create,Survey %>
+    <%= form_for :survey, :url => surveys_path do |f| %>
+    <p>
+      <%= f.text_field :name %>
+    </p>  
+    <span>
+      <%= f.submit "create new" %>
+    </span>
+    <% end %>     
+  <% end %> 
   <table class="container table table-hover" style="width: 500px;">
     <% @surveys.each do |survey| %>
       <tr>
