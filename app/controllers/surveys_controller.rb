@@ -1,8 +1,11 @@
 class SurveysController < ApplicationController
+  before_filter :set_the_header
+  before_filter :set_user
   # I've added create to except because otherwise I get ForbiddenAttributesError on create action
   # maybe we should use workaround from here https://github.com/ryanb/cancan/issues/835
   # this is temp stub, and should be fixed!!!
   load_and_authorize_resource except: [:create]
+
 
   def index
   	@surveys=Survey.all
@@ -67,6 +70,16 @@ class SurveysController < ApplicationController
     a.save!
     render :status => 200,
            :json => { :success => true}
+  end
+
+  private
+
+  def set_the_header
+    @the_header = :schedule
+  end
+  
+  def set_user
+    @user = current_user
   end
 
 end
