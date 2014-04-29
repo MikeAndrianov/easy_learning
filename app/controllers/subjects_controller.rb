@@ -2,9 +2,13 @@ class SubjectsController < ApplicationController
 	before_filter :set_the_header
 	before_filter :set_user
 
+  load_and_authorize_resource
+
   def index
     @subjects=Subject.all
   end
+
+
 
   private
 

@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" id="main">
 <h1>subjects list</h1>
-<table class="container table table-hover" style="width: 500px;">
+<ul>
       <% @subjects.each do |subject| %>
-        <tr>
-          <td><%= subject.name %></td>
-        </tr>
+        <li>
+          <h3><%= link_to subject.name, subject_surveys_path(subject) %></h3>
+        </li>
       <% end %>
-    </table>
+    </ul>
   </div>

@@ -8,7 +8,7 @@ class SurveysController < ApplicationController
 
 
   def index
-  	@surveys=Survey.all
+  	@surveys=Survey.where(subject_id: params[:subject_id])
     @subjects=Subject.all
   end
 
