@@ -1,27 +1,32 @@
 <h1>survey list</h1>
 
-<div class="container" >
-  <% if can? :create,Survey %>
-    <%= form_for :survey, :url => surveys_path do |f| %>
-    <p>
-      <%= f.text_field :name %>
-    </p>  
-    <span>
-      <%= f.submit "create new" %>
-    </span>
-    <% end %>     
-  <% end %> 
-  <table class="container table table-hover" style="width: 500px;">
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= survey.name %></td>
-        <% if can? :update, survey %>
-          <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <% end %>
-        <% if can? :destroy, survey %>
-          <td><%= link_to 'Destroy', survey_path(survey),method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %> 
-      </tr>
-    <% end %>
-  </table>
+<div class="row">
+  <div class="span2 column">
+    <ul class="nav nav-tabs nav-stacked">
+      <% @subjects.each do |subject| %>
+      <li><%= link_to subject.name, subject_surveys_path%></li>
+      <% end %> 
+    </ul>
+  </div>
+  <div class="span10 column" id="survey_list">
+    <% if can? :create,Survey %>
+      <%= form_for :survey, :url => subject_surveys_path do |f| %>    
+        <%= f.text_field :name %>   
+        <%= f.submit "create new" %>   
+      <% end %>     
+    <% end %> 
+    <table class="container table table-hover" style="width: 500px;">
+      <% @surveys.each do |survey| %>
+        <tr>
+          <td><%= survey.name %></td>
+          <% if can? :update, survey %>
+            <td><%= link_to 'Edit', edit_subject_survey_path(survey.subject,survey) %></td>
+          <% end %>
+          <% if can? :destroy, survey %>
+            <td><%= link_to 'Destroy', subject_survey_path(survey.subject,survey),method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %> 
+        </tr>
+      <% end %>
+    </table>
+  </div> 
 </div>

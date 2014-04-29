@@ -1,0 +1,10 @@
+<div class="container">
+<h1>subjects list</h1>
+<table class="container table table-hover" style="width: 500px;">
+      <% @subjects.each do |subject| %>
+        <tr>
+          <td><%= subject.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

@@ -58,21 +58,21 @@ class ApplicationController < ActionController::Base
         { :name => "Administration", :icon => "glyphicon glyphicon-list-alt", :path => rails_admin.dashboard_path },
         { :name => "Files", :icon => "glyphicon glyphicon-cloud-upload", :path => user_admin_files_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_admin_schedule_path },
-        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
+        { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_admin_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif lecturer?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_lecturer_schedule_path },
-        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
+        { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_lecturer_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
     elsif student?
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_student_schedule_path },
-        { :name => "Surveys", :icon => "glyphicon glyphicon-check", :path => surveys_path},
+        { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_student_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]

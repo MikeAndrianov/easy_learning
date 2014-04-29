@@ -9,6 +9,7 @@ class SurveysController < ApplicationController
 
   def index
   	@surveys=Survey.all
+    @subjects=Subject.all
   end
 
   def create

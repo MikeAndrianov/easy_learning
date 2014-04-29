@@ -17,8 +17,9 @@ EasyLearning::Application.routes.draw do
       get 'portfolio'
     end
   end
-  
-  resources :surveys
+  resources :subjects do
+    resources :surveys
+  end
   get '/survey/edit/getSurvey' => 'surveys#getSurvey'
   post '/survey/edit/question/add' => 'surveys#addQuestion'
   post '/survey/edit/question/delete' => 'surveys#deleteQuestion'
