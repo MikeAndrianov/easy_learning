@@ -1,8 +1,8 @@
 <div class="span2 column">
     <ul class="nav nav-tabs nav-stacked">
-      <li><%= link_to "Home", subject_path(@subject) %></li>
+      <%= nav_link 'Home', subject_path(@subject) %>
       <br>
-      <li><%= link_to "Lectures" %></li>
-      <li><%= link_to "Surveys", subject_surveys_path(@subject) %></li>
+      <%= nav_link 'Lectures','/' %>
+      <%= nav_link 'Surveys', subject_surveys_path(@subject)  %>      
     </ul>
   </div>
