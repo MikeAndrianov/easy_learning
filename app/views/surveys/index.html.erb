@@ -1,13 +1,8 @@
-<h1>survey list</h1>
+<div class="row" id="main">
+  <h1>survey list</h1>
 
-<div class="row">
-  <div class="span2 column">
-    <ul class="nav nav-tabs nav-stacked">
-      <% @subjects.each do |subject| %>
-      <li><%= link_to subject.name, subject_surveys_path%></li>
-      <% end %> 
-    </ul>
-  </div>
+  <%= render :partial => "layouts/subject_nav_menu" %> 
+  
   <div class="span10 column" id="survey_list">
     <% if can? :create,Survey %>
       <%= form_for :survey, :url => subject_surveys_path do |f| %>    

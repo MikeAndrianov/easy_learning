@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   before_filter :set_the_header
   before_filter :set_user
+
   # I've added create to except because otherwise I get ForbiddenAttributesError on create action
   # maybe we should use workaround from here https://github.com/ryanb/cancan/issues/835
   # this is temp stub, and should be fixed!!!
@@ -9,7 +10,7 @@ class SurveysController < ApplicationController
 
   def index
   	@surveys=Survey.where(subject_id: params[:subject_id])
-    @subjects=Subject.all
+    @subject=Subject.find(params[:subject_id])
   end
 
   def create
