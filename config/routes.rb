@@ -18,7 +18,9 @@ EasyLearning::Application.routes.draw do
     end
   end
   resources :subjects do
-    resources :surveys
+    resources :surveys do
+      get 'run' => 'survey_run#run'
+    end
   end
   get '/survey/edit/getSurvey' => 'surveys#getSurvey'
   post '/survey/edit/question/add' => 'surveys#addQuestion'
@@ -26,6 +28,8 @@ EasyLearning::Application.routes.draw do
   post '/survey/edit/answer/add' => 'surveys#addAnswer'
   post '/survey/edit/answer/delete' => 'surveys#deleteAnswer'
   post '/survey/edit/answer/triggerIsRight' => 'surveys#triggerAnswer'
+
+
   resources :events
   resources :files, :only => [:index]  do
     collection do

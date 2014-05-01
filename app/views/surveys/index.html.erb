@@ -20,6 +20,11 @@
           <% if can? :destroy, survey %>
             <td><%= link_to 'Destroy', subject_survey_path(survey.subject,survey),method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %> 
+          <td><%= link_to subject_survey_run_path(survey.subject,survey),
+              class: 'btn btn-success' do %>
+              <i class="glyphicon glyphicon-play"></i> Run
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>
