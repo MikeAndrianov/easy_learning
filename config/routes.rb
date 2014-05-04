@@ -20,6 +20,7 @@ EasyLearning::Application.routes.draw do
   resources :subjects do
     resources :surveys do
       get 'run' => 'survey_run#run'
+      get 'calc_results' => 'survey_run#calc_result'
     end
   end
   get '/survey/edit/getSurvey' => 'surveys#getSurvey'

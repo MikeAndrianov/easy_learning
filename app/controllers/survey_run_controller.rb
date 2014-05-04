@@ -3,6 +3,10 @@ class SurveyRunController < ApplicationController
   before_filter :set_user
 
   def run
+    @survey=Survey.find(params[:survey_id])
+  end
+
+  def calc_result
   end
 
   private
