@@ -1,24 +1,31 @@
+<%= form_for @survey , url: {controller: 'survey_run',action: "calc_result"},method: 'post' do |survey_form| %>
     <div class="container">
         <div class="hero-unit"><h2><%= @survey.name%></h2></div>
-        <% @survey.questions.each do |question| %>
+        
+        <%= survey_form.fields_for :questions do |question_form| %>
             <div class="container">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="span1"></th>
-                            <th class="span20"><%= question.content %></th>
+                            <th class="span20">
+                            <%= question_form.label :content,question_form.object.content %></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% question.answers.each do |answer| %>
+                        <%= question_form.fields_for :answers do |answers_form| %>
                             <tr>
-                                <td><input type="checkbox" name="${question.id}" value="${answer.id}"></td>
-                                <td><strong><%= answer.content %></strong></td>
-                            </tr>
-                        <% end %>
+                                <td>                                
+                                	<%=  answers_form.check_box :is_checked %>       
+                                	
+                                </td>
+                                <td><strong><%= answers_form.label :content,answers_form.object.content %></strong></td>
+                            </tr>  
+                       	<% end %>
                     </tbody>
                 </table>                
             </div>
         <% end %>
         <input type="submit" value="Submit" class="btn btn-success btn-large">
     </div>
+<% end %>
