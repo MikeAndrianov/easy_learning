@@ -1,0 +1,7 @@
+<div class="container-narrow" id="resultBanner">
+    <div class="jumbotron">
+        <h1>You've got <%= @result %> out of <%= @questionNumber %>!</h1>        
+        <%= link_to 'Back to survey list', subject_surveys_path(@survey.subject),
+        class: 'btn btn-large btn-success' %>        
+    </div>
+</div>

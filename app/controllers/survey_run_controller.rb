@@ -7,14 +7,25 @@ class SurveyRunController < ApplicationController
   end
 
   def calc_result
-    @p=params
-    # @s1 = Survey.new(survey_params)
-    # @survey.questions.last.answers.last.attributes.each{|key, value| puts "#{key} : #{value}"}
     @survey=Survey.find(params[:survey_id])
-    @survey.assign_attributes(survey_params)
-    @survey.questions.last.answers.last.is_checked=true
-    @survey_params=survey_params
-    @is_checked=@survey.questions.last.answers.last.is_checked
+    result=0
+    survey_params[:questions_attributes].each do |key, question|
+      qScore=1 # question score
+      question[:answers_attributes].each do |key, answer|
+        a_id=answer[:id]
+        dbAnswer=Answer.find(a_id)
+        is_right=dbAnswer.is_right
+        is_checked=answer[:is_checked]
+        if ((is_checked=='0' && is_right==true) || (is_checked=='1' && is_right==false))
+          qScore=0
+          break
+        end
+      end
+      result+=qScore
+      puts question      
+    end
+    @result=result
+    @questionNumber=@survey.questions.size
   end
 
   private
