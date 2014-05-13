@@ -52,6 +52,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
+  gem "rails-erd" # schema visualizer, require Graphviz(apt-get install graphviz) 
 end
 
 group :test do
