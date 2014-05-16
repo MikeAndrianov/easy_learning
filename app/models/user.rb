@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :events, :through => :participations
   has_many :events_created_by_me, :class_name => 'Event', :foreign_key => :created_by_id
 
+  has_many :survey_results
+  has_many :surveys, through: :survey_results
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
