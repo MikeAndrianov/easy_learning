@@ -9,6 +9,7 @@ class SurveyRunController < ApplicationController
   def calc_result
     @survey=Survey.find(params[:survey_id])
     result=0
+    # calc result score
     survey_params[:questions_attributes].each do |key, question|
       qScore=1 # question score
       question[:answers_attributes].each do |key, answer|
@@ -26,6 +27,9 @@ class SurveyRunController < ApplicationController
     end
     @result=result
     @questionNumber=@survey.questions.size
+    # save result to db
+    @survey.survey_results.create(right_answered: result, 
+      total: @questionNumber,user: @user)
   end
 
   private
