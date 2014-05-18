@@ -25,6 +25,9 @@
               <i class="glyphicon glyphicon-play"></i> Run
             <% end %>
           </td>
+          <td>
+            <%= link_to 'View results', subject_survey_results_path(survey.subject,survey) %>
+          </td>
         </tr>
       <% end %>
     </table>

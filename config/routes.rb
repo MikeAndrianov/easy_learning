@@ -21,6 +21,7 @@ EasyLearning::Application.routes.draw do
     resources :surveys do
       get 'run' => 'survey_run#run'
       post 'calc_result' => 'survey_run#calc_result'
+      get 'results' => 'survey_run#view_results'
     end
   end
   get '/survey/edit/getSurvey' => 'surveys#getSurvey'

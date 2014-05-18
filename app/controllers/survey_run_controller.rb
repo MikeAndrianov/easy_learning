@@ -32,6 +32,12 @@ class SurveyRunController < ApplicationController
       total: @questionNumber,user: @user)
   end
 
+  def view_results
+    @survey=Survey.find(params[:survey_id])
+    @subject=Subject.find(params[:subject_id])
+    @survey_results=@survey.survey_results
+  end
+
   private
  
   def set_the_header
