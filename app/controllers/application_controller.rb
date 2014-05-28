@@ -71,6 +71,7 @@ class ApplicationController < ActionController::Base
       ]
     elsif student?
       [
+        { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_student_schedule_path },
         { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_student_settings_path },
