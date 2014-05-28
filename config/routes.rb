@@ -33,7 +33,7 @@ EasyLearning::Application.routes.draw do
 
 
   resources :events
-  resources :files, :only => [:index]  do
+  resources :files, :only => [:index, :show]  do
     collection do
       get "omniauth_callback"
       post "upload"
@@ -44,12 +44,12 @@ EasyLearning::Application.routes.draw do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
-    resources :files, :only => [:index] do
-      collection do
-        get "omniauth_callback"
-        post "upload"
-      end
-    end
+    # resources :files, :only => [:index, :show] do
+    #   collection do
+    #     get "omniauth_callback"
+    #     post "upload"
+    #   end
+    # end
   end
   
   namespace :user, path: "", only: [] do
@@ -58,7 +58,7 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
-      resources :files, :only => [:index] do
+      resources :files, :only => [:index, :show] do
         collection do
           get "omniauth_callback"
           post "upload"
@@ -72,7 +72,7 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
-      resources :files, :only => [:index] do
+      resources :files, :only => [:index, :show] do
         collection do
           get "omniauth_callback"
           post "upload"
@@ -86,7 +86,7 @@ EasyLearning::Application.routes.draw do
       resources :home
       resource :settings, :only => [:show, :update]
       resource :schedule, :only => [:show]
-      resources :files, :only => [:index] do
+      resources :files, :only => [:index, :show] do
         collection do
           get "omniauth_callback"
           post "upload"

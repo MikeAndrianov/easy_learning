@@ -13,7 +13,7 @@
         <tbody>
           <% @files.each do |file| %>
             <tr>
-              <td> <%= link_to file.name, file.google_id %> </td>
+              <td> <%= link_to file.name, file_path(file) %> </td>
               <td> <%= file.updated_at.strftime("%H:%M %d %b %Y") %> </td>
             </tr>
           <% end %>
