@@ -45,6 +45,8 @@ gem 'sprockets'
 
 gem 'rails_admin'
 
+gem "paperclip", "~> 4.1"
+
 group :development, :test do
   gem 'thin'
   gem 'mysql2'
