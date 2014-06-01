@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601161120) do
+ActiveRecord::Schema.define(version: 20140601173515) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 20140601161120) do
     t.datetime "updated_at"
     t.string   "uploaded_by"
   end
+
+  create_table "materials", force: true do |t|
+    t.string   "name"
+    t.integer  "section_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "materials", ["section_id"], name: "index_materials_on_section_id", using: :btree
 
   create_table "participations", force: true do |t|
     t.integer  "user_id"
