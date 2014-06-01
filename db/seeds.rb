@@ -14,6 +14,7 @@ User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name:
 3.times do |z|
   Subject.create(name: "Subject #{z+1}").tap do |subject|
     3.times do |i|
+      # create 3 survey
       survey=subject.surveys.create(name: "Survey #{z*3+i+1}").tap do |survey|
     	  3.times do |j|
     		  survey.questions.create(content:"Question #{j+1}").tap do |question|
@@ -24,7 +25,9 @@ User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name:
           # add 3 random results to current survey
           survey.survey_results.create(user: @user, right_answered: Random.new.rand(1..3), total: 3)
     	  end        
-      end      
-    end
+      end
+      # create 3 sections
+      subject.sections.create(name: "Section #{i}")      
+    end    
   end
 end
