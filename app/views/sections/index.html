@@ -1,33 +1,34 @@
 <div class="row" id="main">
   <%= render :partial => "layouts/subject_nav_menu" %> 
   <div class="span10 column"> 
-
+    <% @sections.each do |section| %>
     <div class="accordion" id="accordion2">
       <div class="accordion-group">
         <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-            Collapsible Group Item #1
-          </a>
+          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse_<%= section.id %>">
+            <%= section.name%> 
+          </h4>
+          <%= form_for [section, section.materials.build], :html => { :multipart => true } ,:url => subject_section_materials_path(@subject,section) do |form| %>
+            <%= form.file_field :file %>
+            <%= form.submit %>
+          <% end %>
         </div>
-        <div id="collapseOne" class="accordion-body collapse in">
+        <div id="collapse_<%= section.id %>" class="accordion-body collapse in">
           <div class="accordion-inner">
             Anim pariatur cliche...
+            <% section.materials.each do |material| %>
+            <table class="table table-striped">
+              <tr>
+                <% if material.file.exists? %>
+                <%= link_to material.file_file_name , material.file.url %>
+                <% end %>
+              </tr>
+            </table>            
+            <% end %>
           </div>
         </div>
-      </div>
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-            Collapsible Group Item #2
-          </a>
-        </div>
-        <div id="collapseTwo" class="accordion-body collapse">
-          <div class="accordion-inner">
-            Anim pariatur cliche...
-          </div>
-        </div>
-      </div>
+      </div>     
     </div>
-    
+    <% end %>
   </div>
 </div>

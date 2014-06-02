@@ -4,6 +4,7 @@ class SectionsController < ApplicationController
 
   def index
     @subject=Subject.find(params[:subject_id])
+    @sections=@subject.sections
   end
 
   private

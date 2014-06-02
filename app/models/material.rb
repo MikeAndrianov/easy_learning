@@ -2,4 +2,5 @@ class Material < ActiveRecord::Base
   belongs_to :section
 
   has_attached_file :file
+  do_not_validate_attachment_file_type :file, :default_url => "/"
 end

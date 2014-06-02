@@ -27,7 +27,7 @@ User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name:
     	  end        
       end
       # create 3 sections
-      subject.sections.create(name: "Section #{i}")      
+      subject.sections.create(name: "Section #{i+1}")      
     end    
   end
 end
