@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(version: 20140516092619) do
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "control_id"
   end
 
-  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+  add_index "questions", ["control_id"], name: "index_questions_on_control_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"

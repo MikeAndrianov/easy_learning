@@ -1,5 +1,5 @@
 class RenameTestsToSurveys < ActiveRecord::Migration
   def change
-    rename_table :tests, :surveys
+    rename_table :controls, :surveys
   end
 end
