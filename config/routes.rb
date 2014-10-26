@@ -1,12 +1,13 @@
 EasyLearning::Application.routes.draw do
 
+  resources :messages
   mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
   get "surveys/index"
   get "home/index"
 
 
   devise_for :users, controllers: { sessions: "sessions", registrations: "registrations" }
- 
+
   root "home#index"
 
   resources :home do
@@ -39,7 +40,7 @@ EasyLearning::Application.routes.draw do
       post "upload"
     end
   end
-   
+
   namespace :user do
     resources :home
     resource :settings, :only => [:show, :update]
@@ -51,7 +52,7 @@ EasyLearning::Application.routes.draw do
     #   end
     # end
   end
-  
+
   namespace :user, path: "", only: [] do
     namespace :admin do
       root "home#index"
@@ -64,7 +65,7 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-      
+
     end
 
     namespace :lecturer do
@@ -97,10 +98,10 @@ EasyLearning::Application.routes.draw do
   end
 
 
-  
 
 
-  
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -141,7 +142,7 @@ EasyLearning::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
