@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :events, :through => :participations
   has_many :events_created_by_me, :class_name => 'Event', :foreign_key => :created_by_id
-
   has_many :survey_results
   has_many :surveys, through: :survey_results
+  has_many :message_users
+  has_many :messages, through: :message_users
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -12,14 +13,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Devise checks presence of email field. We shouldn't do it here one more time. 
+  # Devise checks presence of email field. We shouldn't do it here one more time.
   #
   validates :name, presence: true
 
   validates_format_of :email,
-    :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z]{2,4}$/i, :multiline => true, 
+    :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z]{2,4}$/i, :multiline => true,
       :message => "must be in example@email.com format."
-  
+
   validates_format_of :mobile,
     :with => /\+([\d]){3}[-" "]*([\d]){2}[-" "]*([\d]){7}$/i, :multiline => true ,
       :message => "number must be in +375-xx-xxxxxxx format.", :allow_blank => true
@@ -66,9 +67,9 @@ class User < ActiveRecord::Base
   end
 
   #
-  #As for now we have one Role per User. It's not quite good to do. 
+  #As for now we have one Role per User. It's not quite good to do.
   #This HOTFIX must be refactoried!
-  
+
   #def role
   #  roles.last
   #end

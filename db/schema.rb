@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516092619) do
+ActiveRecord::Schema.define(version: 20141026154031) do
 
   create_table "answers", force: true do |t|
     t.string   "content"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20140516092619) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uploaded_by"
+  end
+
+  create_table "message_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "created_by_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "participations", force: true do |t|
