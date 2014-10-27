@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :survey_results
   has_many :surveys, through: :survey_results
   has_many :message_users
-  has_many :messages, through: :message_users
+  has_many :inbox, through: :message_users, source: :message
+  has_many :outbox, class_name: 'Message', foreign_key: :created_by_id
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
