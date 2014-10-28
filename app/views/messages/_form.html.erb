@@ -1,7 +1,7 @@
 <%= form_for @message do |f| %>
 
-  <%= f.label :users %>
-  <%= f.text_field :users %>
+  <%= f.label :recipients %>
+  <%= f.collection_select(:recipients, User.all, :id, :email) %>
 
   <%= f.label :body %>
   <%= f.text_field :body %>

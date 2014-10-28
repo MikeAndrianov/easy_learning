@@ -1,2 +1,24 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <table class="table table-hover">
+      <tr>
+        <th>From:</th>
+        <th>Text:</th>
+        <th>Received at:</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.sender.name %></td>
+        <td><%= message.body %></td>
+         <td><%= message.created_at %></td>
+        <td><%= link_to "Show", message %></td>
+        <td><%= link_to "Remove", message, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
+

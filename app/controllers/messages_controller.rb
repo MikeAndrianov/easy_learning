@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
   def index
-
+    @messages = current_user.inbox
   end
 
   def show
+    @message = Message.find(params[:id])
   end
 
   def new
@@ -11,7 +12,14 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(message_params)
+    @message = Message.new
+    @message.sender = current_user
+    @message.body = params[:message][:body]
+
+    found_user = User.find(params[:message][:recipients].to_i)
+      if found_user
+        @message.recipients << found_user
+      end
 
     if @message.save
       redirect_to messages_path
@@ -24,6 +32,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:created_by_id, :body)
+    params.require(:message).permit(:recipients, :body)
   end
 end
