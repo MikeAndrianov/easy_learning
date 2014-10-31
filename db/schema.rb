@@ -58,8 +58,11 @@ ActiveRecord::Schema.define(version: 20141026154031) do
     t.datetime "updated_at"
   end
 
+  add_index "message_users", ["message_id"], name: "index_message_users_on_message_id", using: :btree
+  add_index "message_users", ["user_id"], name: "index_message_users_on_user_id", using: :btree
+
   create_table "messages", force: true do |t|
-    t.integer  "created_by_id"
+    t.integer  "created_by"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
