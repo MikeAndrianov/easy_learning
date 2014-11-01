@@ -15,9 +15,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.sender = current_user
 
-
-    found_user = User.find(params[:message][:recipients])
-    @message.recipients << found_user if found_user
+    params[:message][:recipients].shift #the first element from multiselect is always nil
+    found_users = User.find(params[:message][:recipients])
+    @message.recipients << found_users if found_user
 
 
     if @message.save
