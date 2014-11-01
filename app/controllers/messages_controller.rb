@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = current_user.inbox
+    @messages = Message.inbox(current_user)
   end
 
   def show
@@ -12,14 +12,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new
+    @message = Message.new(message_params)
     @message.sender = current_user
-    @message.body = params[:message][:body]
 
-    found_user = User.find(params[:message][:recipients].to_i)
-      if found_user
-        @message.recipients << found_user
-      end
+
+    found_user = User.find(params[:message][:recipients])
+    @message.recipients << found_user if found_user
+
 
     if @message.save
       redirect_to messages_path
@@ -32,6 +31,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:recipients, :body)
+    params.require(:message).permit(:body)
   end
 end
