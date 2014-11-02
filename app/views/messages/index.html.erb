@@ -1,24 +1,33 @@
 <div class="container">
   <div class="row">
-    <table class="table table-hover">
-      <tr>
-        <th>From:</th>
-        <th>Text:</th>
-        <th>Received at:</th>
-        <th></th>
-        <th></th>
-      </tr>
+    <div class="span2">
+      <div class="func_column">
+        <div class="write">
+          <%= button_to "WRITE", new_message_path %>
+        </div>
+        <div class="inbox">
+          <%= button_to "INBOX"  %>
+        </div>
+        <div class="outbox">
+          <%= button_to "OUTBOX"  %>
+        </div>
 
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.sender.name %></td>
-        <td><%= message.body %></td>
-         <td><%= message.created_at %></td>
-        <td><%= link_to "Show", message %></td>
-        <td><%= link_to "Remove", message, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
-    <% end %>
-    </table>
+      </div>
+    </div>
+    <div class="span10">
+      <table class="table">
+        <tbody>
+          <% @messages.each do |message| %>
+            <tr>
+              <td></td>
+              <td><%= message.sender.name %></td>
+              <td><%= message.body %></td>
+              <td><%= message.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
