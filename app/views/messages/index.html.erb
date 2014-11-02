@@ -21,7 +21,7 @@
             <tr>
               <td></td>
               <td><%= message.sender.name %></td>
-              <td><%= message.body %></td>
+              <td><%= link_to starting_message(message),message_path(message) %></td>
               <td><%= message.created_at.to_date %></td>
             </tr>
           <% end %>

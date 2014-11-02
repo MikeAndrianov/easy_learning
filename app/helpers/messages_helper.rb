@@ -9,4 +9,8 @@ module MessagesHelper
      when date == date_today then date.strftime("%I:%M")
    end
  end
+
+ def starting_message(message)
+   message.body[0..40] + "..."
+ end
 end
