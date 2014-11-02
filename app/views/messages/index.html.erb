@@ -22,7 +22,7 @@
               <td></td>
               <td><%= message.sender.name %></td>
               <td><%= message.body %></td>
-              <td><%= message.created_at %></td>
+              <td><%= message.created_at.to_date %></td>
             </tr>
           <% end %>
         </tbody>
