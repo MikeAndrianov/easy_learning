@@ -8,7 +8,9 @@
 # admin create
 @user=User.create(email: 'admin@mail.com',type: 'Admin',password: '12345678',name: 'admin')
 # student create
-User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name: 'student')
+student1 = User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name: 'student')
+student2 = User.create(email: Faker::Internet.email,type: 'Student',password: '12345678',name: Faker::Name.name)
+users = [@user, student1, student2]
 
 # here we create 3 stub subjects with surveys
 3.times do |z|
@@ -23,8 +25,15 @@ User.create(email: 'student@mail.com',type: 'Student',password: '12345678',name:
     		  end
           # add 3 random results to current survey
           survey.survey_results.create(user: @user, right_answered: Random.new.rand(1..3), total: 3)
-    	  end        
-      end      
+    	  end
+      end
     end
   end
+end
+
+
+100.times do |temp|
+ m = Message.create(sender: users[Random.new.rand(0..2)], body: "#{Faker::Hacker.say_something_smart}" )
+ m.recipients << users[Random.new.rand(0..2)]
+ m.save
 end
