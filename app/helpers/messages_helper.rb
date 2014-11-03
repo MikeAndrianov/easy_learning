@@ -2,11 +2,14 @@ module MessagesHelper
  def pretty_date(time)
    date = time.to_date
    date_today = Date.today
-   case date
-     when date.year < date_today.year then date.strftime("%d %b %Y")
-     when date.year == date_today.year then date.strftime("%d %b")
-     when date == date_today.yesterday then "yesterday"
-     when date == date_today then date.strftime("%I:%M")
+   if date == date_today
+     date.strftime("%I:%M")
+   elsif date == date_today.yesterday
+     "yesterday"
+   elsif date.year == date_today.year
+    date.strftime("%d %b")
+   elsif date.year < date_today.year
+    date.strftime("%d %b %Y")
    end
  end
 

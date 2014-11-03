@@ -19,7 +19,7 @@
               <td></td>
               <td><%= message.sender.name %></td>
               <td><%= link_to starting_message(message),message_path(message) %></td>
-              <td><%= message.created_at.to_date %></td>
+              <td><%= pretty_date(message.created_at) %></td>
             </tr>
           <% end %>
         </tbody>
