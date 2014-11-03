@@ -8,13 +8,17 @@ module MessagesHelper
      "yesterday"
    elsif date.year == date_today.year
     date.strftime("%d %b")
-   elsif date.year < date_today.year
+   else
     date.strftime("%d %b %Y")
    end
  end
 
  def starting_message(message)
-   message.body[0..40] + "..."
+  if message.body.length > 40
+    message.body[0..40] + "..."
+  else
+    message.body
+  end
  end
 
  def starting_recipients(message)

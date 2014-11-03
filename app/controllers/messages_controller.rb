@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
 
 
     if @message.save
-      redirect_to messages_path
+      redirect_to inbox_path
       flash[:success] = "Your message has been sent"
     else
       render 'new'

@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
 
   validates :body, presence: true
 
-  default_scope { order("created_at asc") }
+  default_scope { order("created_at desc") }
   scope :outbox, ->(user_id) { where(created_by: user_id) }
   scope :inbox, ->(user_id) { joins(:message_users).where('message_users.user_id = ?', user_id) }
 end

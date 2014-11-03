@@ -35,5 +35,6 @@ end
 100.times do |temp|
  m = Message.create(sender: users[Random.new.rand(0..2)], body: "#{Faker::Hacker.say_something_smart}" )
  m.recipients << users[Random.new.rand(0..2)]
+ m.created_at = Faker::Date.backward(370)
  m.save
 end
