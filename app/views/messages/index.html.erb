@@ -1,18 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="span2">
-      <div class="func_column">
+    <div class="span2 func_mess">
         <div class="write">
-          <%= button_to "WRITE", new_message_path %>
+          <%= link_to "Write", new_message_path %>
         </div>
         <div class="inbox">
-          <%= button_to "INBOX"  %>
+          <%= link_to "Inbox"  %>
         </div>
         <div class="outbox">
-          <%= button_to "OUTBOX"  %>
+          <%= link_to "Outbox"  %>
         </div>
-
-      </div>
     </div>
     <div class="span10">
       <table class="table">
