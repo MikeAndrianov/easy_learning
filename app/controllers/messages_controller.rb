@@ -28,6 +28,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def outbox
+    @messages = Message.outbox(current_user)
+  end
+
   private
 
   def message_params
