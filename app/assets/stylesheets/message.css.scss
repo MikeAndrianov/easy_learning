@@ -1,6 +1,6 @@
 .func_mess {
   margin-left: 0px;
-  margin-top: 20px;
+
   .write, .inbox,.outbox {
     text-align: left;
     padding-left:  20px;
@@ -15,4 +15,7 @@
 
      }
   }
+}
+.message-box {
+  margin-top: 20px;
 }

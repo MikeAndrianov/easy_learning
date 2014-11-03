@@ -1,6 +1,7 @@
 EasyLearning::Application.routes.draw do
 
   get 'messages/outbox', to: 'messages#outbox', as: 'outbox'
+  get 'messages/inbox', to: 'messages#inbox', as: 'inbox'
   resources :messages
   mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
   get "surveys/index"

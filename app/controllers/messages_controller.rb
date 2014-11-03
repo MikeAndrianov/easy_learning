@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  def index
+  def inbox
     @messages = Message.inbox(current_user)
   end
 
