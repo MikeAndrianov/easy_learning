@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :set_the_header
+
   def inbox
     @messages = Message.inbox(current_user)
   end
@@ -36,5 +38,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body)
+  end
+
+  def set_the_header
+    @the_header = :messages
   end
 end

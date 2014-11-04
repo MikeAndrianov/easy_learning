@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
         { :name => "Files", :icon => "glyphicon glyphicon-cloud-upload", :path => user_admin_files_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_admin_schedule_path },
         { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
+        { :name => "Messages", :icon => "glyphicon glyphicon-envelope", :path => inbox_user_admin_messages_path },
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_admin_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
@@ -66,6 +67,7 @@ class ApplicationController < ActionController::Base
       [
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_lecturer_schedule_path },
         { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
+        { :name => "Messages", :icon => "glyphicon glyphicon-envelope", :path => inbox_user_lecturer_messages_path }, 
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_lecturer_settings_path },         
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]
@@ -74,6 +76,7 @@ class ApplicationController < ActionController::Base
         { :name => "Home", :icon => "glyphicon glyphicon-home", :path => home_index_path },
         { :name => "Schedule", :icon => "glyphicon glyphicon-calendar", :path => user_student_schedule_path },
         { :name => "Subjects", :icon => "glyphicon glyphicon-list", :path => subjects_path},
+        { :name => "Messages", :icon => "glyphicon glyphicon-envelope", :path => inbox_user_student_messages_path },
         { :name => "Settings", :icon => "glyphicon glyphicon-cog", :path => user_student_settings_path },
         { :name => "Sign out", :icon => "glyphicon glyphicon-share-alt", :path => destroy_user_session_path, :method => :delete }
       ]

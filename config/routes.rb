@@ -1,8 +1,4 @@
 EasyLearning::Application.routes.draw do
-
-  get 'messages/outbox', to: 'messages#outbox', as: 'outbox'
-  get 'messages/inbox', to: 'messages#inbox', as: 'inbox'
-  resources :messages
   mount RailsAdmin::Engine => 'administration', :as => 'rails_admin'
   get "surveys/index"
   get "home/index"
@@ -47,6 +43,12 @@ EasyLearning::Application.routes.draw do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
+    resources :messages do 
+      collection do
+          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
+          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
+        end
+      end
     # resources :files, :only => [:index, :show] do
     #   collection do
     #     get "omniauth_callback"
@@ -67,7 +69,12 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-
+      resources :messages do 
+        collection do
+          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
+          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
+        end
+      end
     end
 
     namespace :lecturer do
@@ -81,7 +88,12 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-
+      resources :messages do 
+        collection do
+          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
+          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
+        end
+      end
     end
 
     namespace :student do
@@ -95,7 +107,12 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-
+      resources :messages do 
+        collection do
+          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
+          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
+        end
+      end
     end
   end
 
