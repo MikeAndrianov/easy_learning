@@ -43,12 +43,7 @@ EasyLearning::Application.routes.draw do
     resources :home
     resource :settings, :only => [:show, :update]
     resource :schedule, :only => [:show]
-    resources :messages do 
-      collection do
-          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
-          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
-        end
-      end
+    resources :messages
     # resources :files, :only => [:index, :show] do
     #   collection do
     #     get "omniauth_callback"
@@ -69,12 +64,7 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-      resources :messages do 
-        collection do
-          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
-          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
-        end
-      end
+      resources :messages
     end
 
     namespace :lecturer do
@@ -88,12 +78,7 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-      resources :messages do 
-        collection do
-          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
-          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
-        end
-      end
+      resources :messages
     end
 
     namespace :student do
@@ -107,12 +92,7 @@ EasyLearning::Application.routes.draw do
           post "upload"
         end
       end
-      resources :messages do 
-        collection do
-          get 'outbox' #, to: 'messages#outbox', as: 'outbox'
-          get 'inbox' #, to: 'messages#inbox', as: 'inbox'
-        end
-      end
+      resources :messages
     end
   end
 
