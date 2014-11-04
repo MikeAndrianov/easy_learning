@@ -2,13 +2,13 @@
   <div class="row message-box">
     <div class="span2 func_mess">
         <div class="write">
-          <%= link_to "Write", new_message_path %>
+          <%= link_to "Write", new_user_message_path %>
         </div>
         <div class="inbox">
-          <%= link_to "Inbox", inbox_path  %>
+          <%= link_to "Inbox", inbox_user_messages_path  %>
         </div>
         <div class="outbox">
-          <%= link_to "Outbox", outbox_path  %>
+          <%= link_to "Outbox", outbox_user_messages_path  %>
         </div>
     </div>
     <div class="span10 messages">
@@ -18,7 +18,7 @@
             <tr>
               <td></td>
               <td>To: <%= starting_recipients(message) %></td>
-              <td><%= link_to starting_message(message),message_path(message) %></td>
+              <td><%= link_to starting_message(message), user_message_path(message) %></td>
               <td><%= pretty_date(message.created_at) %></td>
             </tr>
           <% end %>
